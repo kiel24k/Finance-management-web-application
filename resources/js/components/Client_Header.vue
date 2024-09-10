@@ -1,7 +1,7 @@
 <template>
     <header>
         <div class="content1">
-         <b>ChatApp</b>
+         <img src="/public/image/logo.png" width="150px" alt="">
         </div>
         <div class="content2">
         <ul class="navbar nav">
@@ -41,7 +41,7 @@
         width: 100%;
         position: sticky;
         top:0;
-        background-color: #eceff0;
+        background-color: #ffffff;
         backdrop-filter: blur(10px);
         padding:10px;
         box-shadow: 0px 0px 5px 0px gray;
