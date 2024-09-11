@@ -16,16 +16,13 @@ watch(burgerProps, (oldVal, newVal) => {
 const hideBurger = () => {
   hideBurgerEmit('hideBurger')
 }
-
-
-
 </script>
 
 <template>
   <aside id="sidebar">
     <div class="sidebar" :class="{ burger: isBurger }">
-      <div class="title">
-        <h1>TItle here</h1>
+      <div class="title mt-3">
+        <img src="/public/image/logo.png" width="150" alt="">
         <img src="/public/image/burder-menu1.png" alt="" width="40px" height="40px" @click="hideBurger" />
       </div>
       <div class="menu1">
