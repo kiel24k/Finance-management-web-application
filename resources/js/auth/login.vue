@@ -1,9 +1,10 @@
 <script setup>
 import axios from 'axios';
 import { ref } from 'vue';
+import { useRouter } from 'vue-router';
 
 
-
+const router = useRouter()
 const inputValidation = ref({})
 const input = ref({})
 
@@ -20,7 +21,9 @@ const submit = () => {
       password: input.value.password
     }
   }).then(response => {
-    console.log(response);
+    if(response.status == 200){
+      router.push('/client-dashboard')
+    }
   }).catch(e => {
     if(e.status == 422){
       inputValidation.value = e.response.data.errors
