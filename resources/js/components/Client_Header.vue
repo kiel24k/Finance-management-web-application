@@ -12,7 +12,7 @@
                 <a href="#section-two" class="nav-link">Features</a>
             </li>
             <li class="nav-item">
-                <a href="" class="nav-link">Contact</a>
+                <a href="#section-three" class="nav-link">Contact</a>
             </li>
             <li class="nav-item">
                 <a href="" class="nav-link">Signup</a>
