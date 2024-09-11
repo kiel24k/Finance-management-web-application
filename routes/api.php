@@ -10,4 +10,5 @@ Route::get('/user', function (Request $request) {
 
 route::controller(AuthController::class)->group(function () {
    route::post('signup', 'signup');
+   route::post('login', 'login');
 });

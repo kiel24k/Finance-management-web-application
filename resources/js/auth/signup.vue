@@ -1,8 +1,11 @@
 <script setup>
 import axios from 'axios';
 import { ref } from 'vue';
+import { useRouter } from 'vue-router';
 
+const router = useRouter()
 const input = ref({})
+const inputValidation = ref({})
 
   const back = () => {
     window.history.back()
@@ -18,8 +21,16 @@ const input = ref({})
       password: input.value.password
     }
   }).then(response => {
-    console.log(response);
+ if(response.status == 200){
+  router.push('/login')
+
+ }
     
+    
+  }).catch(e => {
+   if(e.status == 422){
+    inputValidation.value = e.response.data.errors
+   }
   })
   }
 </script>
@@ -37,33 +48,6 @@ const input = ref({})
                   <p>Signup</p>
                   <span>And enjoy life during the time you just saved!</span>
                 </div>
-                <div class="row mt-5 signup-with">
-                  <div class="col">
-                    <button class="btn">
-                      <span>
-                        <img
-                          src="/public/image/5296499_fb_facebook_facebook logo_icon.png"
-                          width="30px"
-                          alt=""
-                        />
-                        Signup with Facebook
-                      </span>
-                    </button>
-                  </div>
-                  <div class="col">
-                    <button class="btn">
-                      <span>
-                        <img
-                          src="/public/image/1920525_gogle_google_logo_network_icon.png"
-                          width="30px"
-                          alt=""
-                        />
-                        SIgnup with Goodle
-                      </span>
-                    </button>
-                  </div>
-                </div>
-  
                 <div class="row mt-2">
                   <form action="" @submit.prevent>
                     <fieldset>
@@ -71,16 +55,19 @@ const input = ref({})
                         <div class="col">
                           <label for="">Username</label>
                           <input type="text" class="form-control" v-model="input.username" />
+                          <span class="text-danger" v-if="inputValidation.username">{{ inputValidation.username[0] }}</span>
                         </div>
                         <div class="col">
                           <label for="">Email</label>
                           <input type="text" class="form-control" v-model="input.email" />
+                          <span class="text-danger" v-if="inputValidation.email">{{ inputValidation.email[0] }}</span>
                         </div>
                       </div>
                       <div class="row mt-3">
                         <div class="col">
                           <label for="">Password</label>
                           <input type="text" class="form-control" v-model="input.password" />
+                          <span class="text-danger" v-if="inputValidation.password">{{ inputValidation.password[0] }}</span>
                         </div>
                       </div>
                       <div class="row mt-3">
