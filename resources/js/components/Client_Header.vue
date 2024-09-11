@@ -15,10 +15,7 @@
                 <a href="#section-three" class="nav-link">Contact</a>
             </li>
             <li class="nav-item">
-                <a href="" class="nav-link">Signup</a>
-            </li>
-            <li class="nav-item">
-                <a href="" class="nav-link">Login</a>
+                <router-link :to="{name: 'login'}" class="nav-link">Login</router-link>
             </li>
         </ul>
         </div>
