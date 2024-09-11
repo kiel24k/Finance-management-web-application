@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
@@ -11,9 +12,9 @@ class AuthController extends Controller
     {
         $request->validate([
             'username' => 'required',
-            'email' => 'required|unique:users,email',
+            'email' => 'required|unique:users,email|email',
             'password' => 'required',
-            
+
         ]);
         $user = new User();
         $user->username = $request->username;
@@ -28,5 +29,24 @@ class AuthController extends Controller
         $user->tel_no = $request->tel_no;
         $user->save();
         return response()->json($user);
+    }
+
+    public function login(Request $request)
+    {
+        $request->validate([
+            'email' => 'required',
+            'password' => 'required'
+        ]);
+        if (!Auth::attempt($request->only('email', 'password'))) {
+            return response()->json([
+                'message' => 'invalid credentials'
+            ]);
+        } else {
+            $user = Auth::user();
+            $token = $user->createToken($user->email)->plainTextToken;
+            return response()->json([
+                'message' => 'login successfull'
+            ])->cookie('user_token',$token, 24 * 6 * 7, null, null, true, true);
+        }
     }
 }
