@@ -1,6 +1,26 @@
 <script setup>
+import axios from 'axios';
+import { ref } from 'vue';
+
+const input = ref({})
+
   const back = () => {
     window.history.back()
+  }
+
+  const submit = () => {
+  axios({
+    method: 'POST',
+    url: '/api/signup',
+    data: {
+      username: input.value.username,
+      email: input.value.email,
+      password: input.value.password
+    }
+  }).then(response => {
+    console.log(response);
+    
+  })
   }
 </script>
 
@@ -45,22 +65,22 @@
                 </div>
   
                 <div class="row mt-2">
-                  <form action="">
+                  <form action="" @submit.prevent>
                     <fieldset>
                       <div class="row mt-3">
                         <div class="col">
-                          <label for="">Name</label>
-                          <input type="text" class="form-control" />
+                          <label for="">Username</label>
+                          <input type="text" class="form-control" v-model="input.username" />
                         </div>
                         <div class="col">
                           <label for="">Email</label>
-                          <input type="text" class="form-control" />
+                          <input type="text" class="form-control" v-model="input.email" />
                         </div>
                       </div>
                       <div class="row mt-3">
                         <div class="col">
                           <label for="">Password</label>
-                          <input type="text" class="form-control" />
+                          <input type="text" class="form-control" v-model="input.password" />
                         </div>
                       </div>
                       <div class="row mt-3">
@@ -78,7 +98,7 @@
                       </div>
                       <div class="row m-3 create-account-btn">
                         <div class="col text-center">
-                          <button class="btn btn-info p-2">
+                          <button class="btn btn-info p-2" @click="submit">
                             Create an account
                           </button>
                         </div>
