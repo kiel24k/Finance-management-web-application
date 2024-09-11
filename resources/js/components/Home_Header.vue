@@ -1,31 +1,6 @@
-
-<script setup>
-import Sidebar from '@/components/Client_Sidebar.vue'
-import { ref } from 'vue';
-
-const showBurger = ref(false)
-const burger = () => {
-    showBurger.value = true
-}
-
-const hideBurger = () => {
-    showBurger.value = false
-}
-
-
-</script>
 <template>
-    <Sidebar :showBurger="showBurger" @hideBurger="hideBurger"/>
     <header>
         <div class="content1">
-            <img
-            src="/public/image/burder-menu1.png"
-            alt=""
-            width="40px"
-            height="40px"
-            class="burger"
-            @click="burger"
-          />
          <img src="/public/image/logo.png" width="150px" alt="">
         </div>
         <div class="content2">
@@ -40,7 +15,7 @@ const hideBurger = () => {
                 <a href="#section-three" class="nav-link">Contact</a>
             </li>
             <li class="nav-item">
-                <a href="">profile</a>
+                <router-link :to="{name: 'login'}" class="nav-link">Login</router-link>
             </li>
         </ul>
         </div>
@@ -72,14 +47,4 @@ const hideBurger = () => {
         font-weight: bold;
         color:var(--bold-font-color)
     }
-    .hideSidebar{
-        position: absolute;
-        height: 100%;
-        z-index: 999;
-        transform: translate(25%);
-        transition: all linear 2s;
-        
-    }
-  
-    
 </style>
