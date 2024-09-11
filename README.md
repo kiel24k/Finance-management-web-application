@@ -1,66 +1,343 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+ <header>
+        <div class="content1">
+         <img src="/public/image/logo.png" width="150px" alt="">
+        </div>
+        <div class="content2">
+        <ul class="navbar nav">
+            <li class="nav-item">
+                <a href="#section-one" class="nav-link">About</a>
+            </li>
+            <li class="nav-item">
+                <a href="#section-two" class="nav-link">Features</a>
+            </li>
+            <li class="nav-item">
+                <a href="#section-three" class="nav-link">Contact</a>
+            </li>
+            <li class="nav-item">
+                <router-link :to="{name: 'login'}" class="nav-link">Login</router-link>
+            </li>
+        </ul>
+        </div>
+     </header>
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+<main>
+        <section id="home-section">
+            <h1>K-Personal finance manager</h1>
+            <h2>from@kielbermudez200104@gmail.com</h2>
+            <div class="get-started text-center">
+                <button>Get Started</button>
+            </div>
+        </section>
 
-## About Laravel
+        <section id="section-one">
+            <article>
+                <figure>
+                    <img src="/public/image/vektor1.png" width="500" alt="">
+                </figure>
+                <figcaption>
+                    <span>
+                        Expand your spendings in a proper way
+                    </span>
+                    <p>
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius, dolore pariatur adipisci, placeat
+                        consectetur neque maiores exercitationem repudiandae quibusdam non commodi voluptatem, aperiam
+                        ipsa error
+                    </p>
+                </figcaption>
+            </article>
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+            <article>
+                <figcaption>
+                    <span>
+                        Keep your information track!
+                    </span>
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius, dolore pariatur adipisci, placeat
+                        consectetur neque maiores exercitationem repudiandae quibusdam non commodi voluptatem, aperiam
+                        ipsa error
+                    </p>
+                </figcaption>
+                <figure>
+                    <img src="/public/image/vektor2.png" height="250" width="450" alt="">
+                </figure>
+            </article>
+        </section>
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+        <section id="section-two">
+            <div class="title">
+                <span>Everything you need to manage </span>
+                <span>and control global spend</span>
+            </div>
+            <div class="content">
+                <article>
+                    <figure>
+                        <img src="/public/image/pie-chart.webp" alt="">
+                    </figure>
+                    <figcaption>
+                        <span>Accounts payable & purchase orders</span>
+                        <p>end to end accounts payable software including ourchase orders, invoise
+                        </p>
+                        <b>
+                            <a href="">Learn more</a>
+                        </b>
+                    </figcaption>
+                </article>
+                <article>
+                    <figure>
+                        <img src="/public/image/bar-graph.png" alt="">
+                    </figure>
+                    <figcaption>
+                        <span>all your spend platform</span>
+                        <p> Automate your most tedious tasks like manual data entry, connecting mistakes</p>
+                        <b>
+                            <a href="">Learn more</a>
+                        </b>
+                    </figcaption>
+                </article>
+                <article>
+                    <figure>
+                        <img src="/public/image/shopping.png" alt="">
+                    </figure>
+                    <figcaption>
+                        <span>dedicated in multiple currencies</span>
+                        <p>Dedicated in multiple currencies safeguarding of funds in line with PSD2</p>
+                        <b>
+                            <a href="">Learn more </a>
+                        </b>
+                    </figcaption>
+                </article>
+            </div>
+        </section>
 
-## Learning Laravel
+        <section id="section-three">
+            <article>
+                <figcaption>
+                    <h2 class="mb-5">Here to help you 24/7</h2>
+                    <span>
+                        <img src="/public/image/check-mark.png" alt="">
+                        <p>Access expert support whenever you need it via live chat and email</p>
+                    </span>
+                    <span>
+                        <img src="/public/image/check-mark.png" alt="">
+                        <p>Access expert support whenever you need it via live chat and email</p>
+                    </span>
+                    <span>
+                        <img src="/public/image/check-mark.png" alt="">
+                        <p>Access expert support whenever you need it via live chat and email</p>
+                    </span>
+                    <span>
+                        <img src="/public/image/check-mark.png" alt="">
+                        <p>Access expert support whenever you need it via live chat and email</p>
+                    </span>
+                    <span>
+                        <img src="/public/image/check-mark.png" alt="">
+                        <p>Access expert support whenever you need it via live chat and email</p>
+                    </span>
+                    <span>
+                        <img src="/public/image/check-mark.png" alt="">
+                        <p>Access expert support whenever you need it via live chat and email</p>
+                    </span>
+                </figcaption>
+                <figure>
+                    <img src="/public/image/contact-us-vektor.png" alt="">
+                </figure>
+            </article>
+        </section>
+    </main>
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+    <style scoped>
+:root{
+    --background-color: #F6E8DF;
+    --bold-font-color: #013237;
+    --button-color: #FE979C;
+}
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+    header{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        position: sticky;
+        top:0;
+        background-color: #ffffff;
+        backdrop-filter: blur(10px);
+        padding:10px;
+        box-shadow: 0px 0px 5px 0px gray;
+    }
+    .nav-item a{
+        font-weight: bold;
+        color:var(--bold-font-color)
+    }
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+#home-section {
+    background-image: url('/public/image/building-bg.jpg');
+    width: 100%;
+    min-height: var(--section-min-height);
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    gap: 20px;
+}
 
-## Laravel Sponsors
+#home-section h1 {
+    color: white;
+    font-weight: 700;
+    text-transform: uppercase;
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+}
 
-### Premium Partners
+#home-section h2 {
+    color: White;
+    font-weight: 600;
+    font-size: smaller;
+    text-align: center;
+}
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+#home-section .get-started button {
+    background-color: black;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 10px;
+    font-weight: 600;
+}
 
-## Contributing
+#section-one {
+    width: 100%;
+    min-height: var(--section-min-height);
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    gap: 4rem;
+    align-items: center;
+}
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+#section-one article {
+    min-width: 80%;
+    display: flex;
+    gap: 5rem;
+    align-content: center;
+    justify-content: center;
+}
 
-## Code of Conduct
+#section-one figcaption {
+    width: 20rem;
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+}
 
-## Security Vulnerabilities
+#section-one figcaption span {
+    font-size: 25px;
+    color: var(--bold-font-color);
+    font-weight: 700;
+}
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+#section-one figure img {
+    border-radius: 25px;
 
-## License
+}
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+#section-two {
+    height: var(--section-min-height);
+    width: 100%;
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    gap: 50px;
+}
+
+#section-two .title {
+    text-align: center;
+    font-weight: 700;
+    font-size: 40px;
+    color: var(--bold-font-color);
+    display: grid;
+}
+
+#section-two article {
+    max-width: 20.6rem;
+    box-shadow: 0px 0px 3px 0px gray;
+    padding: 20px;
+    border-radius: 15px;
+}
+
+#section-two figure {
+    height: 12rem;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+}
+
+#section-two figure img {
+    width: 250px;
+}
+
+#section-two .content {
+    min-width: 10rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+#section-two figcaption {
+    display: grid;
+    gap: 20px;
+
+}
+
+#section-two figcaption span {
+    color: var(--bold-font-color);
+    font-weight: 600;
+    font-size: 20px;
+    text-transform: capitalize;
+}
+
+#section-two figcaption p {
+    color: gray;
+}
+
+#section-three {
+    height: var(--section-min-height);
+    display: grid;
+    justify-content: center;
+}
+
+#section-three article {
+    display: flex;
+    flex-wrap: wrap;
+    gap:10px;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+
+#section-three figcaption {
+    width: 30rem;
+    display: grid;
+    align-items: center;
+    font-size: 30px;
+    color: var(--bold-font-color);
+}
+#section-three figcaption span{
+    display: flex;
+    align-items: start;
+    font-size: 15px;
+    justify-content: center;
+    gap:10px;
+}
+#section-three figcaption h2{
+color:var(--bold-font-color);
+font-weight: bold;
+font-size: 30px;
+}
+
+#section-three figcaption img{
+    width: 20px;
+}
+
+#section-three figure{
+  
+   
+}
+</style>
