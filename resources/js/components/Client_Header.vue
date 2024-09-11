@@ -6,10 +6,10 @@
         <div class="content2">
         <ul class="navbar nav">
             <li class="nav-item">
-                <a href="" class="nav-link">About</a>
+                <a href="#section-one" class="nav-link">About</a>
             </li>
             <li class="nav-item">
-                <a href="" class="nav-link">Features</a>
+                <a href="#section-two" class="nav-link">Features</a>
             </li>
             <li class="nav-item">
                 <a href="" class="nav-link">Contact</a>
