@@ -25,10 +25,6 @@ import Header from '@/components/Client_Header.vue'
                 <p>
 
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius, dolore pariatur adipisci, placeat consectetur neque maiores exercitationem repudiandae quibusdam non commodi voluptatem, aperiam ipsa error
-
-                  main test1
-
-
                 </p>
             </figcaption>
         </article>
@@ -46,8 +42,52 @@ import Header from '@/components/Client_Header.vue'
                 <img src="/public/image/vektor2.png" height="250" width="450" alt="">
             </figure>
         </article>
-        
-      
+    </section>
+
+    <section id="section-two" >
+        <div class="title">
+            <span>Everything you need to manage </span>
+            <span>and control global spend</span>
+        </div>
+        <div class="content">
+            <article>
+                <figure>
+                  <img src="/public/image/pie-chart.webp" alt="" >
+                </figure>
+                <figcaption>
+                   <span>Accounts payable & purchase orders</span>
+                   <p>end to end accounts payable software including ourchase orders, invoise
+                   </p>
+                   <b>
+                    <a href="">Learn more</a>
+                   </b>
+                </figcaption>
+            </article>
+            <article>
+                <figure>
+                    <img src="/public/image/bar-graph.png"  alt="">
+                </figure>
+                <figcaption>
+                  <span>all your spend platform</span>
+                  <p> Automate your most tedious tasks like manual data entry, connecting mistakes</p>
+                  <b>
+                    <a href="">Learn more</a>
+                  </b>
+                </figcaption>
+            </article>
+            <article>
+                <figure>
+                    <img src="/public/image/shopping.png" alt="">
+                </figure>
+                <figcaption>
+                    <span>dedicated in multiple currencies</span>
+                    <p>Dedicated in multiple currencies safeguarding of funds in line with PSD2</p>
+                    <b>
+                        <a href="">Learn more   </a>
+                    </b>
+                </figcaption>
+            </article>
+        </div>
     </section>
    </main>
 </template>
@@ -59,7 +99,7 @@ import Header from '@/components/Client_Header.vue'
 #home-section {
     background-image: url('/public/image/building-bg.jpg');
     width: 100%;
-    height: 55.4rem;
+    min-height: var(--section-min-height);
     display: grid;
     justify-content: center;
     align-items: center;
@@ -86,12 +126,10 @@ import Header from '@/components/Client_Header.vue'
     padding:10px;
     font-weight: 600;
 }
-#section-one{
-    width: 100%;
-    height: 55.5rem;
-    background-color:var(--background-color);
-}
+
 #section-one {
+    width: 100%;
+    min-height: var(--section-min-height);
    display: grid;
    justify-content: center;
    align-content: center;
@@ -118,5 +156,57 @@ import Header from '@/components/Client_Header.vue'
 #section-one figure img{
     border-radius: 25px;
    
+}
+
+#section-two{
+    height: var(--section-min-height);
+    width: 100%;
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    gap:50px;
+}
+#section-two .title{
+    text-align: center;
+    font-weight: 700;
+    font-size: 40px;
+    color: var(--bold-font-color);
+    display: grid;
+}
+#section-two article {
+    max-width: 20.6rem;
+    box-shadow: 0px 0px 3px 0px gray;
+    padding:20px;
+    border-radius: 15px;
+}
+#section-two figure{
+    height: 12rem;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+}
+#section-two figure img{
+    width:250px;
+}
+#section-two .content{
+    min-width: 10rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap:20px;
+}
+
+#section-two figcaption{
+    display: grid;
+    gap:20px;
+   
+}
+#section-two figcaption span {
+    color:var(--bold-font-color);
+    font-weight: 600;
+    font-size: 20px;
+    text-transform: capitalize;
+}
+#section-two figcaption p {
+    color:gray;
 }
 </style>
