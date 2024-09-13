@@ -5,17 +5,24 @@ const burgerProps = defineProps(['showBurger'])
 const hideBurgerEmit = defineEmits(['hideBurger'])
 const isBurger = ref(false)
 
+
+
 watch(burgerProps, (oldVal, newVal) => {
   if (burgerProps.showBurger == true) {
     isBurger.value = true
   } else if (burgerProps.showBurger == false) {
     isBurger.value = false
   }
+  
+ 
 })
+
 
 const hideBurger = () => {
   hideBurgerEmit('hideBurger')
 }
+
+
 </script>
 
 <template>
@@ -27,24 +34,24 @@ const hideBurger = () => {
       </div>
       <div class="menu1">
         <ul class="navbar nav mt-1">
-          <div class="item1">
+          <router-link :to="{name: 'client-dashboard'}" class="item1" >
             <li class="nav-link text-dark">
               <img src="/public/image/dashboard-icon.png" width="20px" alt="" />
               Dashboard
             </li>
-          </div>
-          <div class="item1">
+          </router-link>
+          <router-link  :to="{name: 'client-settings'}" class="item1" >
             <li class="nav-link text-dark">
               <img src="/public/image/settings-icon.png" width="20px" alt="" />
               Settings
             </li>
-          </div>
-          <div class="item1">
+          </router-link>
+          <router-link :to="{name: 'client-manage'}" class="item1">
             <li class="nav-link text-dark">
-              <img src="/public/image/dot.png" width="20px" alt="" />
-              Item 1 sample
+              <img src="/public/image/manage-icon.png" width="20px" alt="" />
+              Manage
             </li>
-          </div>
+          </router-link>
           <div class="item1">
             <li class="nav-link text-dark">
               <img src="/public/image/dot.png" width="20px" alt="" />
@@ -149,11 +156,18 @@ const hideBurger = () => {
   background: rgb(231, 230, 230);
   color: rgb(253, 248, 248);
 }
+a{
+  text-decoration: none;
+}
 
 .nav-link {
   display: flex;
   align-items: center;
   gap: 10px;
   color: red;
+  
+}
+.router-link-active, .router-link-exact-active {
+  background-color: rgb(206, 59, 59);
 }
 </style>
