@@ -29,10 +29,17 @@ const hideBurger = () => {
          <img src="/public/image/logo.png" width="150px" alt="">
         </div>
         <div class="content2">
-        <ul class="navbar nav">
+        <ul class="navbar nav nav-action">
+            <li class="nav-item">
+                <div class="notification">
+                 <img src="/public/image/notification-icon.png" width="20" alt="">
+                 notification
+                </div>
+             </li>
             <li class="nav-item">
                <div class="profile">
                 <img src="/public/image/370076_account_avatar_client_male_person_icon.png" width="40" alt="">
+              
                </div>
             </li>
         </ul>
@@ -71,8 +78,20 @@ const hideBurger = () => {
         z-index: 999;
         transform: translate(25%);
         transition: all linear 2s;
-        
     }
+   .notification{
+    background-color: rgb(226, 223, 223);
+    height: 2rem;
+    padding:5px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+   }
+   .nav-action{
+    display: flex;
+    gap:10px;
+    align-items: center
+   }
   
     
 </style>
