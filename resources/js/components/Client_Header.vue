@@ -31,16 +31,9 @@ const hideBurger = () => {
         <div class="content2">
         <ul class="navbar nav">
             <li class="nav-item">
-                <a href="#section-one" class="nav-link">About</a>
-            </li>
-            <li class="nav-item">
-                <a href="#section-two" class="nav-link">Features</a>
-            </li>
-            <li class="nav-item">
-                <a href="#section-three" class="nav-link">Contact</a>
-            </li>
-            <li class="nav-item">
-                <a href="">profile</a>
+               <div class="profile">
+                <img src="/public/image/370076_account_avatar_client_male_person_icon.png" width="40" alt="">
+               </div>
             </li>
         </ul>
         </div>

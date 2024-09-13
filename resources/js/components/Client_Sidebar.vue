@@ -27,17 +27,16 @@ const hideBurger = () => {
       </div>
       <div class="menu1">
         <ul class="navbar nav mt-1">
-          <small class="p-4">Favorites</small>
           <div class="item1">
             <li class="nav-link text-dark">
-              <img src="/public/image/dot.png" width="20px" alt="" />
-              Item 1 sample
+              <img src="/public/image/dashboard-icon.png" width="20px" alt="" />
+              Dashboard
             </li>
           </div>
           <div class="item1">
             <li class="nav-link text-dark">
-              <img src="/public/image/dot.png" width="20px" alt="" />
-              Item 1 sample
+              <img src="/public/image/settings-icon.png" width="20px" alt="" />
+              Settings
             </li>
           </div>
           <div class="item1">

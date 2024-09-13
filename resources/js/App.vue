@@ -5,7 +5,7 @@
 <style>
 :root{
     --background-color: #ffffff;
-    --bold-font-color: #013237;
+    --bold-font-color: #07717a;
     --button-color: #FE979C;
     --section-min-height:60.5rem;
 }
