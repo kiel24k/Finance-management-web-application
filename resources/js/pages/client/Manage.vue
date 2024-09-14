@@ -133,6 +133,7 @@ section {
     background-color: rgb(255, 255, 255);
 }
 
+
 .select-option{
     display: flex;
     align-items: center;
@@ -161,7 +162,7 @@ section {
             overflow-x: auto;
         }
 
-        #section-two table th {
+        #section-four table th {
             background: rgb(231, 239, 243);
             color: rgb(0, 0, 0);
             font-weight: 400;
@@ -194,7 +195,7 @@ section {
             overflow: auto;
         }
 
-        #section-two table th {
+        #section-four table th {
             background: rgb(231, 239, 243);
             color: rgb(0, 0, 0);
             font-weight: 400;
