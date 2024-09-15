@@ -5,12 +5,12 @@ import Bargraph from '@/components/Chart_Bargraph.vue'
 import Linegraph from '@/components/Chart_Line.vue'
 import { ref } from 'vue';
 
-const sidebar = ref(true)
+
 
 </script>
 
 <template>
-    <Header />
+    <Header @userID="userID" />
     <section id="section-one">
         <div class="row mt-2 overview">
             <div class="col">

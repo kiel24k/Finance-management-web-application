@@ -43,10 +43,15 @@ class AuthController extends Controller
             ]);
         } else {
             $user = Auth::user();
-            $token = $user->createToken($user->email)->plainTextToken;
+            $token = $user->createToken('TokenName')->plainTextToken;
             return response()->json([
                 'message' => 'login successfull'
             ])->cookie('user_token',$token, 24 * 6 * 7, null, null, true, true);
         }
+    }
+
+    public function user () {
+        $user = Auth::user();
+        return response()->json($user);
     }
 }

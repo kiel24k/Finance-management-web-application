@@ -4,16 +4,25 @@ import AddBalanceModal from '@/components/Client_Add_Balance.vue'
 import { ref } from 'vue';
 
 const balanceModal = ref(false)
+const userInfo = ref()
+
+
+const user = (info) => {
+    userInfo.value = info 
+}
+
+
 
 const addBalanceBtn = () => {
     balanceModal.value = true
-   
-
 }
+
+ 
 </script>
 <template>
-    <AddBalanceModal v-if="balanceModal" @closeModal="balanceModal = false"/>
-    <Header />
+    <AddBalanceModal v-if="balanceModal" @closeModal="balanceModal = false" :userInfo="userInfo"/>
+    <Header @user="user" />
+    <button @click="test">test</button>
     <section id="section-one">
         <div class="row balance">
             <div class="col text-success">
