@@ -1,12 +1,24 @@
 <script setup>
 import Sidebar from '@/components/Client_Sidebar.vue'
-import { ref } from 'vue';
+import { onMounted, ref } from 'vue';
 import { useRouter } from 'vue-router';
 
 const router = useRouter()
+const userInfo = ref()
+const emitUserId = defineEmits(['userID'])
 const showBurger = ref(false)
 const burger = () => {
     showBurger.value = true
+}
+
+const user = () => {
+    axios({
+        method: 'GET',
+        url: 'api/user'
+    }).then(response => { 
+        userInfo.value = response.data
+        emitUserId('user', userInfo.value)
+    })
 }
 
 const hideBurger = () => {
@@ -17,6 +29,10 @@ const profileBtn = () => {
     router.push('/client-profile')
        
 }
+
+onMounted(() => {
+    user()
+})
 
 
 </script>

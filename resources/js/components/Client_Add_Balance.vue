@@ -1,9 +1,46 @@
 <script setup>
+import { onMounted, ref } from 'vue';
+
 
 const emit = defineEmits(['closeModal'])
+const input = ref({})
+const date = new Date().toLocaleDateString()
+const props = defineProps(['userInfo'])
+const balanceData = ref({})
+
 const closeModal = () => {
     emit('closeModal')
 }
+
+const currentBalance  = () => {
+    axios({
+        method: 'GET',
+        url: 'api/current-balance',
+        params: {
+            id: props.userInfo.id
+        }
+    }).then(response => {
+       balanceData.value = response.data[0]
+    })
+}
+
+const saveBtn = () => {
+   axios({
+    method: 'POST',
+    url: 'api/client-add-balance',
+    data: {
+        amount: input.value.amount,
+        date: date
+    }
+   }).then(response => {
+    console.log(response);
+    
+   })
+}
+
+onMounted(() => {
+ currentBalance()
+})
 
 </script>
 
@@ -28,7 +65,7 @@ const closeModal = () => {
                         </div>
                         <div class="action-btn">
                             <button class="btn btn-danger">Cancel</button>
-                            <button class="btn btn-primary">Save Changes</button>
+                            <button class="btn btn-primary" @click="saveBtn">Save Changes</button>
                         </div>
                     </div>
                     <hr>
@@ -50,9 +87,9 @@ const closeModal = () => {
                 </div>
                 <div class="enter-amount">
                     <fieldset>
-                        <form action="">
+                        <form action="" @submit.prevent>
                             <label for="">Enter Amount</label>
-                            <input type="text">
+                            <input type="text" v-model="input.amount">
                         </form>
                     </fieldset>
                 </div>
