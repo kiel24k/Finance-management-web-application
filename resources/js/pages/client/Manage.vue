@@ -1,7 +1,18 @@
 <script setup>
 import Header from '@/components/Client_Header.vue'
+import AddBalanceModal from '@/components/Client_Add_Balance.vue'
+import { ref } from 'vue';
+
+const balanceModal = ref(false)
+
+const addBalanceBtn = () => {
+    balanceModal.value = true
+   
+
+}
 </script>
 <template>
+    <AddBalanceModal v-if="balanceModal" @closeModal="balanceModal = false"/>
     <Header />
     <section id="section-one">
         <div class="row balance">
@@ -10,7 +21,7 @@ import Header from '@/components/Client_Header.vue'
                 <h1>$405</h1>
             </div>
             <div class="col text-end">
-                <button>
+                <button @click="addBalanceBtn">
                     <span>
                         <img src="/public/image/add-icon.png" width="30px" alt="">
                         Add balance
