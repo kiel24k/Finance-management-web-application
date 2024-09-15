@@ -30,6 +30,11 @@ const routes = [
         component: () => import("../pages/client/Manage.vue"),
         name: "client-manage",
     },
+    {
+        path: '/client-profile',
+        component: () => import('../pages/client/Profile..vue'),
+        name: 'client-profile'
+    },
 ];
 
 const router = createRouter({
