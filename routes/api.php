@@ -18,6 +18,7 @@ route::controller(AuthController::class)->group(function () {
 });
 
 route::controller(ClientController::class)->group(function () {
-    route::post('/client-add-balance', 'addBalance');
+    route::post('/client-update-balance', 'updateBalance');
     route::get('/current-balance', 'currentBalance');
+    route::get('/get-user-balance', 'getUserBalance');
 });

@@ -51,4 +51,8 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function userBalanceId () {
+        return $this->hasOne(UserBalance::class, 'user_id');
+    }
 }

@@ -1,5 +1,6 @@
 <script setup>
 import { onMounted, ref } from 'vue';
+import { useRouter } from 'vue-router';
 
 
 const emit = defineEmits(['closeModal'])
@@ -7,6 +8,7 @@ const input = ref({})
 const date = new Date().toLocaleDateString()
 const props = defineProps(['userInfo'])
 const balanceData = ref({})
+const router = useRouter()
 
 const closeModal = () => {
     emit('closeModal')
@@ -27,13 +29,16 @@ const currentBalance  = () => {
 const saveBtn = () => {
    axios({
     method: 'POST',
-    url: 'api/client-add-balance',
+    url: 'api/client-update-balance',
     data: {
         amount: input.value.amount,
         date: date
     }
    }).then(response => {
-    console.log(response);
+    if(response.status == 200){
+       emit('closeModal')
+        
+    }
     
    })
 }
@@ -61,7 +66,7 @@ onMounted(() => {
                     <span>Amount</span>
                     <div class="amount-action p-4">
                         <div class="balance">
-                            <span>$323,232,00</span>
+                            <span>{{ balanceData.amount }} </span>
                         </div>
                         <div class="action-btn">
                             <button class="btn btn-danger">Cancel</button>
@@ -73,11 +78,11 @@ onMounted(() => {
                 <div class="details">
                     <div class="">
                         <span>SUBMITTED BY</span>
-                        <p>:Kiel Bermudez</p>
+                        <p>:{{ userInfo.username }}</p>
                     </div>
                     <div class="">
                         <span>DATE</span>
-                        <p>:Kiel Bermudez</p>
+                        <p>:{{ date }}</p>
                     </div>
                 </div>
                 <div class="note">

@@ -1,33 +1,45 @@
 <script setup>
 import Header from '@/components/Client_Header.vue'
 import AddBalanceModal from '@/components/Client_Add_Balance.vue'
-import { ref } from 'vue';
+import { onMounted, ref } from 'vue';
 
 const balanceModal = ref(false)
 const userInfo = ref()
+const userBalanceValue = ref({})
+const userBalance = () => {
+    axios({
+        method: 'GET',
+        url: 'api/get-user-balance'
+    }).then(response => {
+        userBalanceValue.value = response.data[0]
+    })
+}
 
 
 const user = (info) => {
     userInfo.value = info 
 }
-
-
-
 const addBalanceBtn = () => {
     balanceModal.value = true
 }
-
+const closeModal = () => {
+    balanceModal.value = false
+    userBalance()
+}
+onMounted(() => {
+    userBalance()
+})
  
 </script>
 <template>
-    <AddBalanceModal v-if="balanceModal" @closeModal="balanceModal = false" :userInfo="userInfo"/>
+    <AddBalanceModal v-if="balanceModal" @closeModal="closeModal" :userInfo="userInfo"/>
     <Header @user="user" />
     <button @click="test">test</button>
     <section id="section-one">
         <div class="row balance">
             <div class="col text-success">
                 <span>your balance is:</span>
-                <h1>$405</h1>
+                <h1>{{ userBalanceValue.amount }}</h1>
             </div>
             <div class="col text-end">
                 <button @click="addBalanceBtn">
