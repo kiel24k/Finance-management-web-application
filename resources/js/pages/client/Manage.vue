@@ -57,7 +57,7 @@ onMounted(() => {
                 <button @click="addBalanceBtn">
                     <span>
                         <img src="/public/image/add-icon.png" width="30px" alt="">
-                        Add balance
+                        Edit Balance
                     </span>
                 </button>
                 <button @click="addPlanBtn">
