@@ -2,10 +2,12 @@
 import Header from '@/components/Client_Header.vue'
 import AddBalanceModal from '@/components/Client_Add_Balance.vue'
 import { onMounted, ref } from 'vue';
+import PlanBudget from '@/components/Client_Plan_Budget.vue'
 
 const balanceModal = ref(false)
 const userInfo = ref()
 const userBalanceValue = ref({})
+const planModal = ref(false)
 const userBalance = () => {
     axios({
         method: 'GET',
@@ -26,6 +28,16 @@ const closeModal = () => {
     balanceModal.value = false
     userBalance()
 }
+
+const addPlanBtn = () => {
+    planModal.value = true
+
+}
+const PlanBudgetCloseModal = () => {
+    planModal.value = false
+    
+
+}
 onMounted(() => {
     userBalance()
 })
@@ -33,8 +45,8 @@ onMounted(() => {
 </script>
 <template>
     <AddBalanceModal v-if="balanceModal" @closeModal="closeModal" :userInfo="userInfo"/>
+    <PlanBudget v-if="planModal" @closeModal="PlanBudgetCloseModal"/>
     <Header @user="user" />
-    <button @click="test">test</button>
     <section id="section-one">
         <div class="row balance">
             <div class="col text-success">
@@ -48,7 +60,7 @@ onMounted(() => {
                         Add balance
                     </span>
                 </button>
-                <button>
+                <button @click="addPlanBtn">
                     <img src="/public/image/add-icon.png" width="30px" alt="">
                     Plan Budget
                 </button>
@@ -106,10 +118,11 @@ onMounted(() => {
             <thead>
                 <tr>
                     <th>#</th>
-                    <th>name</th>
-                    <th>city</th>
-                    <th>area</th>
-                    <th>state</th>
+                    <th>amount</th>
+                    <th>date</th>
+                    <th>budget name</th>
+                    <th>description</th>
+                    <th>category</th>
                     <th>action</th>
                 </tr>
             </thead>
@@ -120,6 +133,7 @@ onMounted(() => {
                     <td>Cavite</td>
                     <td>Manila</td>
                     <td>Phillippines</td>
+                    <td>sds</td>
                     <td class="action">
                         <span>
                             <button>

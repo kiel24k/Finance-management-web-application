@@ -37,12 +37,13 @@ const saveBtn = () => {
    }).then(response => {
     if(response.status == 200){
        emit('closeModal')
-        
     }
-    
    })
 }
 
+const cancelBtn = () => {
+    emit('closeModal')
+}
 onMounted(() => {
  currentBalance()
 })
@@ -69,7 +70,7 @@ onMounted(() => {
                             <span>{{ balanceData.amount }} </span>
                         </div>
                         <div class="action-btn">
-                            <button class="btn btn-danger">Cancel</button>
+                            <button class="btn btn-danger" @click="cancelBtn">Cancel</button>
                             <button class="btn btn-primary" @click="saveBtn">Save Changes</button>
                         </div>
                     </div>
@@ -93,7 +94,7 @@ onMounted(() => {
                 <div class="enter-amount">
                     <fieldset>
                         <form action="" @submit.prevent>
-                            <label for="">Enter Amount</label>
+                            <label for="">Change Amount</label>
                             <input type="text" v-model="input.amount">
                         </form>
                     </fieldset>
