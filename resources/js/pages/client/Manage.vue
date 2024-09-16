@@ -119,11 +119,12 @@ onMounted(() => {
                 <tr>
                     <th>#</th>
                     <th>amount</th>
-                    <th>date</th>
+                    <th>End of date</th>
                     <th>budget name</th>
                     <th>description</th>
                     <th>category</th>
                     <th>action</th>
+                   
                 </tr>
             </thead>
             <tbody>
