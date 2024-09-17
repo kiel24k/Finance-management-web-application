@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\User;
 use App\Models\UserBalance;
 use Illuminate\Http\Request;
@@ -46,5 +47,22 @@ class ClientController extends Controller
         return response()->json([
             $userBalance->userBalanceId
         ]);
+    }
+    public function newCategory(Request $request)
+    {
+        $request->validate([
+            'category_name' => 'required|unique:categories,category_name'
+        ]);
+
+        $category = new Category();
+        $category->user_id = Auth::user()->id;
+        $category->category_name = $request->category_name;
+        $category->save();
+        return response()->json($category);
+    }
+    public function categoryList()
+    {
+        $category = User::find(Auth::user()->id);
+        return response()->json($category->userCategory);
     }
 }

@@ -21,4 +21,6 @@ route::controller(ClientController::class)->group(function () {
     route::post('/client-update-balance', 'updateBalance');
     route::get('/current-balance', 'currentBalance');
     route::get('/get-user-balance', 'getUserBalance');
+    route::post('/new-category', 'newCategory');
+    route::get('/list-category', 'categoryList');
 });
