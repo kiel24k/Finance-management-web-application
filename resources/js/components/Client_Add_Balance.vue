@@ -67,7 +67,7 @@ onMounted(() => {
                     <span>Amount</span>
                     <div class="amount-action p-4">
                         <div class="balance" v-if="balanceData">
-                            <span>{{ balanceData.amount }} </span>
+                            <span>₱{{ balanceData.amount }} </span>
                         </div>
                         <div class="action-btn">
                             <button class="btn btn-danger" @click="cancelBtn">Cancel</button>
