@@ -78,7 +78,7 @@ onMounted(() => {
                 <small> {{ categoryValidation }}</small>
                 <div class="col select">
                     <select name="" v-model="select" id="">
-                       <option v-for="(data, index) in userCategoryList" :key=index> {{ data.category_name }}   </option>
+                       <option :value="select" v-for="(data, index) in userCategoryList" :key=index> {{ data.category_name }}   </option>
                     </select>
 
                     <input type="text" class="add-category" placeholder="New Category" v-model="category">
