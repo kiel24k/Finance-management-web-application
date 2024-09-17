@@ -22,6 +22,7 @@ const user = (info) => {
     userInfo.value = info 
 }
 const addBalanceBtn = () => {
+    console.log(userBalanceValue.value);
     balanceModal.value = true
 }
 const closeModal = () => {
@@ -51,7 +52,7 @@ onMounted(() => {
         <div class="row balance">
             <div class="col text-success">
                 <span>your balance is:</span>
-                <h1>{{ userBalanceValue.amount }}</h1>
+                <!-- <h1>{{ userBalanceValue.amount }}</h1> -->
             </div>
             <div class="col text-end">
                 <button @click="addBalanceBtn">
@@ -119,11 +120,12 @@ onMounted(() => {
                 <tr>
                     <th>#</th>
                     <th>amount</th>
-                    <th>date</th>
+                    <th>End of date</th>
                     <th>budget name</th>
                     <th>description</th>
                     <th>category</th>
                     <th>action</th>
+                   
                 </tr>
             </thead>
             <tbody>

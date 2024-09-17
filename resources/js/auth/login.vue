@@ -1,12 +1,22 @@
 <script setup>
 import axios from 'axios';
-import { ref } from 'vue';
+import { onMounted, ref } from 'vue';
 import { useRouter } from 'vue-router';
 
 
 const router = useRouter()
 const inputValidation = ref({})
 const input = ref({})
+
+const user = () => {
+  axios({
+    url: 'api/user',
+    method: 'GET'
+  }).then(response => {
+    console.log(response);
+    
+  })
+}
 
 const back = () => {
   window.history.back()
@@ -22,7 +32,9 @@ const submit = () => {
     }
   }).then(response => {
     if(response.status == 200){
-     console.log(response);
+      
+      
+    user()
      
       
       router.push('/client-dashboard')
@@ -34,6 +46,7 @@ const submit = () => {
 
   })
 }
+
 
 
 </script>

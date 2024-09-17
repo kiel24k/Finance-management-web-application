@@ -66,7 +66,7 @@ onMounted(() => {
                 <div class="col amount">
                     <span>Amount</span>
                     <div class="amount-action p-4">
-                        <div class="balance">
+                        <div class="balance" v-if="balanceData">
                             <span>{{ balanceData.amount }} </span>
                         </div>
                         <div class="action-btn">

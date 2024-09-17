@@ -1,9 +1,16 @@
 <script setup>
+import { ref } from 'vue';
 
+
+
+const currentDate = new Date().toLocaleDateString()
 const emitCloseModal = defineEmits(['closeModal'])
 const closeModal = () => {
     emitCloseModal('closeModal')
 }
+
+ const rangeValue = ref()
+ const max = ref(25)
 
 </script>
 
@@ -51,7 +58,18 @@ const closeModal = () => {
                         </div>
                         <div class="col">
                             <label for="">Amount</label>
-                            <input type="text" placeholder="Standard Aspiring Artist">
+                            {{ rangeValue }}
+                            <input type="range" v-model="rangeValue" min="0" :max="max" style="color:red; background:green;">
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col">
+                            <b>current date: </b>
+                            <span>{{ currentDate }}</span>
+                        </div>
+                        <div class="col">
+                            <label for="">Target Date</label>
+                            <input type="date">
                         </div>
                     </div>
                     <div class="row mt-2">
