@@ -59,7 +59,6 @@ onMounted(() => {
                     <small>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Neque incidunt soluta doloribus
                         aliquam quae, maiores quam autem veritatis! Laboriosam, placeat quam reprehenderit cumque
                         eligendi incidunt repellat nisi magnam atque modi.</small>
-
                 </div>
                 <div class="col text-end help-action">
                     <button class="help-btn">
@@ -73,16 +72,14 @@ onMounted(() => {
                 </div>
             </div>
             <hr>
-
             <div class="row">
-                <small> {{ categoryValidation }}</small>
+                <small class="text-primary"> {{ categoryValidation }}</small>
                 <div class="col select">
                     <select name="" v-model="select" id="">
-                       <option :value="select" v-for="(data, index) in userCategoryList" :key=index> {{ data.category_name }}   </option>
+                        <option :value="select" v-for="(data, index) in userCategoryList" :key=index> {{
+                            data.category_name }} </option>
                     </select>
-
                     <input type="text" class="add-category" placeholder="New Category" v-model="category">
-
                     <button @click="newCategoryBtn">
                         <img src="/public/image/add-icon1.png" width="20" alt="">
                         <span>Add Category</span>
