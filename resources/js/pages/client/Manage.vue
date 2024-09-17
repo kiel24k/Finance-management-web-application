@@ -8,6 +8,8 @@ const balanceModal = ref(false)
 const userInfo = ref()
 const userBalanceValue = ref({})
 const planModal = ref(false)
+
+
 const userBalance = () => {
     axios({
         method: 'GET',
@@ -19,7 +21,7 @@ const userBalance = () => {
 
 
 const user = (info) => {
-    userInfo.value = info 
+    userInfo.value = info
 }
 const addBalanceBtn = () => {
     console.log(userBalanceValue.value);
@@ -32,21 +34,22 @@ const closeModal = () => {
 
 const addPlanBtn = () => {
     planModal.value = true
-
+   
 }
+
 const PlanBudgetCloseModal = () => {
     planModal.value = false
-    
+
 
 }
 onMounted(() => {
     userBalance()
 })
- 
+
 </script>
 <template>
-    <AddBalanceModal v-if="balanceModal" @closeModal="closeModal" :userInfo="userInfo"/>
-    <PlanBudget v-if="planModal" @closeModal="PlanBudgetCloseModal"/>
+    <AddBalanceModal v-if="balanceModal" @closeModal="closeModal" :userInfo="userInfo" />
+    <PlanBudget v-if="planModal" @closeModal="PlanBudgetCloseModal" :userBalanceValue="userBalanceValue" />
     <Header @user="user" />
     <section id="section-one">
         <div class="row balance">
@@ -76,10 +79,10 @@ onMounted(() => {
                 <option value="">Yearly</option>
             </select>
             <div class="plan-budget">
-               
+
             </div>
         </div>
-        
+
     </section>
 
     <section id="section-three" class="mt-4">
@@ -125,7 +128,7 @@ onMounted(() => {
                     <th>description</th>
                     <th>category</th>
                     <th>action</th>
-                   
+
                 </tr>
             </thead>
             <tbody>
@@ -164,109 +167,112 @@ section {
     width: 90%;
     margin: auto;
 }
-.balance{
+
+.balance {
     display: flex;
     align-items: center;
     height: 5rem;
 }
-#section-one{
+
+#section-one {
     background-color: rgb(255, 255, 255);
 }
-#section-one button{
+
+#section-one button {
     background-color: transparent;
-    border:0;
+    border: 0;
 
 }
-#section-two{
+
+#section-two {
     background-color: rgb(255, 255, 255);
 }
 
 
-.select-option{
+.select-option {
     display: flex;
     align-items: center;
-    gap:10px;
+    gap: 10px;
 }
-.select{
+
+.select {
     width: 13rem;
     background-color: white;
-    border:1px solid rgb(206, 206, 206);
+    border: 1px solid rgb(206, 206, 206);
     border-radius: 7px;
-    padding:5px;
+    padding: 5px;
 }
-#section-two button{
+
+#section-two button {
     background-color: transparent;
-    border:0;
+    border: 0;
 }
 
 
 @media screen and (min-width: 769px) {
-        section {
-            width: 90%;
-            margin: auto;
-        }
+    section {
+        width: 90%;
+        margin: auto;
+    }
 
-        #section-four {
-            overflow-x: auto;
-        }
+    #section-four {
+        overflow-x: auto;
+    }
 
-        #section-four table th {
-            background: rgb(231, 239, 243);
-            color: rgb(0, 0, 0);
-            font-weight: 400;
-            font-size: 400;
-            text-transform: capitalize;
-        }
+    #section-four table th {
+        background: rgb(231, 239, 243);
+        color: rgb(0, 0, 0);
+        font-weight: 400;
+        font-size: 400;
+        text-transform: capitalize;
+    }
 
-        .table-action button:not(.export) {
-            border: 1px solid rgb(163, 161, 161);
-            border-radius: 7px;
-            padding: 4px;
-            background: transparent;
-        }
+    .table-action button:not(.export) {
+        border: 1px solid rgb(163, 161, 161);
+        border-radius: 7px;
+        padding: 4px;
+        background: transparent;
+    }
 
-        .action button {
-            background: transparent;
-            border: 0;
-
-        }
+    .action button {
+        background: transparent;
+        border: 0;
 
     }
 
-    @media screen and (max-width: 1116px) {
-        section {
-            width: 90%;
-            margin: auto;
-        }
+}
 
-        #section-four  {
-            overflow: auto;
-        }
-
-        #section-four table th {
-            background: rgb(231, 239, 243);
-            color: rgb(0, 0, 0);
-            font-weight: 400;
-            font-size: 400;
-            text-transform: capitalize;
-        }
-
-        .table-action button:not(.export) {
-            border: 1px solid rgb(163, 161, 161);
-            border-radius: 7px;
-            padding: 4px;
-            background: transparent;
-        }
-
-        .action button {
-            background: transparent;
-            border: 0;
-
-        }
+@media screen and (max-width: 1116px) {
+    section {
+        width: 90%;
+        margin: auto;
     }
 
-    @media screen and (min-width: 601px) {}
+    #section-four {
+        overflow: auto;
+    }
 
+    #section-four table th {
+        background: rgb(231, 239, 243);
+        color: rgb(0, 0, 0);
+        font-weight: 400;
+        font-size: 400;
+        text-transform: capitalize;
+    }
 
+    .table-action button:not(.export) {
+        border: 1px solid rgb(163, 161, 161);
+        border-radius: 7px;
+        padding: 4px;
+        background: transparent;
+    }
 
+    .action button {
+        background: transparent;
+        border: 0;
+
+    }
+}
+
+@media screen and (min-width: 601px) {}
 </style>
