@@ -52,7 +52,13 @@ class User extends Authenticatable
         ];
     }
 
-    public function userBalanceId () {
+    public function userBalanceId()
+    {
         return $this->hasOne(UserBalance::class, 'user_id');
+    }
+
+    public function userCategory()
+    {
+        return $this->hasMany(Category::class, 'user_id');
     }
 }

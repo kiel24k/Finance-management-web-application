@@ -1,4 +1,5 @@
 <script setup>
+import axios from 'axios';
 import { onMounted, ref } from 'vue';
 
 
@@ -6,14 +7,46 @@ import { onMounted, ref } from 'vue';
 const currentDate = new Date().toLocaleDateString()
 const emitCloseModal = defineEmits(['closeModal'])
 const propsUserBalanceValue = defineProps(['userBalanceValue'])
+const rangeValue = ref()
+const max = propsUserBalanceValue.userBalanceValue.amount
+const category = ref('')
+const categoryValidation = ref('')
+const select = ref('')
+const userCategoryList = ref({})
+
 const closeModal = () => {
     emitCloseModal('closeModal')
 }
 
+const newCategoryBtn = () => {
+    axios({
+        method: 'POST',
+        url: 'api/new-category',
+        data: {
+            category_name: category.value
+        }
+    }).then(response => {
+        category.value = ''
+    }).catch(e => {
+        if (e.status) {
+            categoryValidation.value = e.response.data.message
+        }
+    })
+    userCategory()
+}
 
+const userCategory = () => {
+    axios({
+        method: 'GET',
+        url: 'api/list-category'
+    }).then(response => {
+        userCategoryList.value = response.data
+    })
+}
 
- const rangeValue = ref()
- const max = propsUserBalanceValue.userBalanceValue.amount
+onMounted(() => {
+    userCategory()
+})
 
 </script>
 
@@ -40,13 +73,17 @@ const closeModal = () => {
                 </div>
             </div>
             <hr>
+
             <div class="row">
+                <small> {{ categoryValidation }}</small>
                 <div class="col select">
-                    <select name="" value="dasdsa" id="">
-                        <option value="" disabled selected>Create or select a name of our project</option>
+                    <select name="" v-model="select" id="">
+                       <option v-for="(data, index) in userCategoryList" :key=index> {{ data.category_name }}   </option>
                     </select>
-                    <input type="text" class="add-category" placeholder="New Category">
-                    <button>
+
+                    <input type="text" class="add-category" placeholder="New Category" v-model="category">
+
+                    <button @click="newCategoryBtn">
                         <img src="/public/image/add-icon1.png" width="20" alt="">
                         <span>Add Category</span>
                     </button>
@@ -62,8 +99,9 @@ const closeModal = () => {
                         </div>
                         <div class="col">
                             <label for="">Amount</label>
-                            {{ rangeValue }}
-                            <input type="range" v-model="rangeValue" min="0" :max="max" style="color:red; background:green;">
+                            ₱{{ rangeValue }}
+                            <input type="range" v-model="rangeValue" min="0" :max="max"
+                                style="color:red; background:green;">
                         </div>
                     </div>
                     <div class="row mt-2">
@@ -156,16 +194,17 @@ const closeModal = () => {
 
 }
 
-.add-category{
+.add-category {
     width: 20%;
     border-radius: 5px;
     border: solid 1px rgb(194, 191, 191);
-    color:blue;
+    color: blue;
     font-size: 15px;
 }
-.add-category:focus{
+
+.add-category:focus {
     outline: 0;
-    color:blue;
+    color: blue;
     font-size: 15px;
 }
 
