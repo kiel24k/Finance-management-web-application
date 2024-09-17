@@ -23,11 +23,6 @@ const submit = () => {
     }
   }).then(response => {
     if(response.status == 200){
-      
-      
-   
-     
-      
       router.push('/client-dashboard')
     }
   }).catch(e => {

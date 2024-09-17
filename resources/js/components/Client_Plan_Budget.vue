@@ -1,16 +1,19 @@
 <script setup>
-import { ref } from 'vue';
+import { onMounted, ref } from 'vue';
 
 
 
 const currentDate = new Date().toLocaleDateString()
 const emitCloseModal = defineEmits(['closeModal'])
+const propsUserBalanceValue = defineProps(['userBalanceValue'])
 const closeModal = () => {
     emitCloseModal('closeModal')
 }
 
+
+
  const rangeValue = ref()
- const max = ref(25)
+ const max = propsUserBalanceValue.userBalanceValue.amount
 
 </script>
 
@@ -42,6 +45,7 @@ const closeModal = () => {
                     <select name="" value="dasdsa" id="">
                         <option value="" disabled selected>Create or select a name of our project</option>
                     </select>
+                    <input type="text" class="add-category" placeholder="New Category">
                     <button>
                         <img src="/public/image/add-icon1.png" width="20" alt="">
                         <span>Add Category</span>
@@ -129,7 +133,7 @@ const closeModal = () => {
 }
 
 .select select {
-    width: 87%;
+    width: 65%;
     border-radius: 5px;
     border: solid 1px rgb(214, 214, 214);
     padding: 5px;
@@ -150,6 +154,19 @@ const closeModal = () => {
     font-weight: 600;
     font-size: 15px;
 
+}
+
+.add-category{
+    width: 20%;
+    border-radius: 5px;
+    border: solid 1px rgb(194, 191, 191);
+    color:blue;
+    font-size: 15px;
+}
+.add-category:focus{
+    outline: 0;
+    color:blue;
+    font-size: 15px;
 }
 
 fieldset {
