@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\BudgetPlan;
 use App\Models\Category;
 use App\Models\User;
 use App\Models\UserBalance;
@@ -64,5 +65,28 @@ class ClientController extends Controller
     {
         $category = User::find(Auth::user()->id);
         return response()->json($category->userCategory);
+    }
+    public function newPlan(Request $request)
+    {
+
+        // $request->validate([
+        //     'category' => 'required',
+        //     'description' => 'required',
+        //     'plan_name' => 'required',
+        //     'target_date' => 'required',
+        //     'amount' => 'required'
+        // ]);
+        $budgetPlan = new BudgetPlan();
+        $budgetPlan->user_id = Auth::user()->id;
+        $budgetPlan->date = $request->date;
+        $budgetPlan->category = $request->category;
+        $budgetPlan->amount = $request->amount;
+        $budgetPlan->description = $request->description;
+        $budgetPlan->plan_name = $request->plan_name;
+        $budgetPlan->target_date = $request->target_date;
+        $budgetPlan->amount = $request->amount;
+        $budgetPlan->save();
+
+        return response()->json($budgetPlan);
     }
 }
