@@ -52,7 +52,7 @@ onMounted(() => {
         <div class="row balance">
             <div class="col text-success">
                 <span>your balance is:</span>
-                <!-- <h1>{{ userBalanceValue.amount }}</h1> -->
+                <h1 v-if="userBalanceValue">₱{{ userBalanceValue.amount }}</h1>
             </div>
             <div class="col text-end">
                 <button @click="addBalanceBtn">

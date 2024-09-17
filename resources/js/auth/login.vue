@@ -8,15 +8,6 @@ const router = useRouter()
 const inputValidation = ref({})
 const input = ref({})
 
-const user = () => {
-  axios({
-    url: 'api/user',
-    method: 'GET'
-  }).then(response => {
-    console.log(response);
-    
-  })
-}
 
 const back = () => {
   window.history.back()
@@ -34,7 +25,7 @@ const submit = () => {
     if(response.status == 200){
       
       
-    user()
+   
      
       
       router.push('/client-dashboard')
