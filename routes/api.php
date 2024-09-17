@@ -23,4 +23,5 @@ route::controller(ClientController::class)->group(function () {
     route::get('/get-user-balance', 'getUserBalance');
     route::post('/new-category', 'newCategory');
     route::get('/list-category', 'categoryList');
+    route::post('/new-plan-budget', 'newPlan');
 });

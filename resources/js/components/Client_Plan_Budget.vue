@@ -13,6 +13,9 @@ const category = ref('')
 const categoryValidation = ref('')
 const select = ref('')
 const userCategoryList = ref({})
+const inputs = ref({
+    plan_name: ''
+})
 
 const closeModal = () => {
     emitCloseModal('closeModal')
@@ -44,6 +47,24 @@ const userCategory = () => {
     })
 }
 
+const saveBtn = () => {
+    axios({
+        method: 'POST',
+        url: 'api/new-plan-budget',
+        data: {
+            date: currentDate,
+            category: select.value,
+            description: inputs.value.description,
+            plan_name: inputs.value.plan_name,
+            target_date: inputs.value.target_date,
+            amount: inputs.value.range
+        }
+    }).then(response => {
+        console.log(response);
+
+    })
+}
+
 onMounted(() => {
     userCategory()
 })
@@ -60,6 +81,7 @@ onMounted(() => {
                         aliquam quae, maiores quam autem veritatis! Laboriosam, placeat quam reprehenderit cumque
                         eligendi incidunt repellat nisi magnam atque modi.</small>
                 </div>
+                <h1>{{ inputs.range }}</h1>
                 <div class="col text-end help-action">
                     <button class="help-btn">
                         <img src="/public/image/help-icon.png" width="25" alt="">
@@ -76,7 +98,7 @@ onMounted(() => {
                 <small class="text-primary"> {{ categoryValidation }}</small>
                 <div class="col select">
                     <select name="" v-model="select" id="">
-                        <option :value="select" v-for="(data, index) in userCategoryList" :key=index> {{
+                        <option :value="data.category_name" v-for="(data, index) in userCategoryList" :key=index> {{
                             data.category_name }} </option>
                     </select>
                     <input type="text" class="add-category" placeholder="New Category" v-model="category">
@@ -91,13 +113,13 @@ onMounted(() => {
                 <form action="">
                     <div class="row">
                         <div class="col">
-                            <label for="">Budget Name</label>
-                            <input type="text" placeholder="Standard Aspiring Artist">
+                            <label for="">Plan Name</label>
+                            <input type="text" placeholder="Standard Aspiring Artist" v-model="inputs.plan_name">
                         </div>
                         <div class="col">
                             <label for="">Amount</label>
-                            ₱{{ rangeValue }}
-                            <input type="range" v-model="rangeValue" min="0" :max="max"
+                            ₱{{ inputs.range }}
+                            <input type="range" v-model="inputs.range" min="0" :max="max"
                                 style="color:red; background:green;">
                         </div>
                     </div>
@@ -108,13 +130,13 @@ onMounted(() => {
                         </div>
                         <div class="col">
                             <label for="">Target Date</label>
-                            <input type="date">
+                            <input type="date" v-model="inputs.target_date">
                         </div>
                     </div>
                     <div class="row mt-2">
                         <div class="col">
                             <label for="">Description</label>
-                            <textarea name="" rows="15" id=""></textarea>
+                            <textarea name="" rows="15" id="" v-model="inputs.description"></textarea>
                         </div>
                     </div>
                 </form>
@@ -122,7 +144,7 @@ onMounted(() => {
             <div class="row">
                 <div class="col text-end form-action-save">
                     <button class="btn " @click="closeModal">Cancel</button>
-                    <button class="btn ">Save</button>
+                    <button class="btn" @click="saveBtn">Save</button>
                 </div>
             </div>
 
