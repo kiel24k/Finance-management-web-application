@@ -15,6 +15,7 @@
         "bootstrap": "^5.3.3",
         "chart.js": "^4.4.4",
         "chartjs": "^0.3.24",
+        "html2pdf.js": "^0.10.2",
         "pinia": "^2.2.2",
         "vue": "^3.5.4",
         "vue-chartjs": "^5.3.1",
