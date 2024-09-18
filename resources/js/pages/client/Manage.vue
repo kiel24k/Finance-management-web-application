@@ -3,11 +3,13 @@ import Header from '@/components/Client_Header.vue'
 import AddBalanceModal from '@/components/Client_Add_Balance.vue'
 import { onMounted, ref } from 'vue';
 import PlanBudget from '@/components/Client_Plan_Budget.vue'
+import axios from 'axios';
 
 const balanceModal = ref(false)
 const userInfo = ref()
 const userBalanceValue = ref({})
 const planModal = ref(false)
+const planListData = ref({})
 
 
 const userBalance = () => {
@@ -16,7 +18,7 @@ const userBalance = () => {
         url: 'api/get-user-balance'
     }).then(response => {
         userBalanceValue.value = response.data[0]
-        
+
     })
 }
 
@@ -35,17 +37,31 @@ const closeModal = () => {
 
 const addPlanBtn = () => {
     planModal.value = true
-   
+
 }
 
 const PlanBudgetCloseModal = () => {
     planModal.value = false
     userBalance()
+}
 
+const planList = () => {
+    axios({
+        method: 'GET',
+        url: 'api/plan-list'
+    }).then(response => {
+        planListData.value = response.data
+
+    })
+}
+
+const sort = (val) => {
+    alert(val)
 
 }
 onMounted(() => {
     userBalance()
+    planList()
 })
 
 </script>
@@ -84,7 +100,6 @@ onMounted(() => {
 
             </div>
         </div>
-
     </section>
 
     <section id="section-three" class="mt-4">
@@ -124,22 +139,36 @@ onMounted(() => {
             <thead>
                 <tr>
                     <th>#</th>
-                    <th>amount</th>
-                    <th>End of date</th>
-                    <th>budget name</th>
-                    <th>description</th>
-                    <th>category</th>
+                    <th @click="sort('plan_name')">Plan Name
+                        <span>{{ sortOrder == 'asc' ? '▲' : '▼' }}</span>
+                    </th>
+                    <th @click="sort('category')">Category
+                        <span>{{ sortOrder == 'asc' ? '▲' : '▼' }}</span>
+                    </th>
+                    <th @click="sort('amount')">Amount
+                        <span>{{ sortOrder == 'asc' ? '▲' : '▼' }}</span>
+                    </th>
+                    <th @click="sort('description')">description
+                        <span>{{ sortOrder == 'asc' ? '▲' : '▼' }}</span>
+                    </th>
+                    <th @click="sort('date')">category
+                        <span>{{ sortOrder == 'asc' ? '▲' : '▼' }}</span>
+                    </th>
+                    <th @click="sort('target_date')">Target Date
+                        <span>{{ sortOrder == 'asc' ? '▲' : '▼' }}</span>
+                    </th>
                     <th>action</th>
 
                 </tr>
             </thead>
             <tbody>
-                <tr>
+                <tr v-for="(data, index) in planListData.data" :key="index">
                     <td>1</td>
-                    <td>Kiel Bermudez</td>
-                    <td>Cavite</td>
-                    <td>Manila</td>
-                    <td>Phillippines</td>
+                    <td>{{ data.plan_name }}</td>
+                    <td>{{ data.category }}</td>
+                    <td>{{ data.amount }}</td>
+                    <td>{{ data.description }}</td>
+                    <td>{{ data.category }}</td>
                     <td>sds</td>
                     <td class="action">
                         <span>
