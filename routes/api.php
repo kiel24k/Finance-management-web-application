@@ -24,4 +24,5 @@ route::controller(ClientController::class)->group(function () {
     route::post('/new-category', 'newCategory');
     route::get('/list-category', 'categoryList');
     route::post('/new-plan-budget', 'newPlan');
+    route::get('/plan-list', 'planList');
 });

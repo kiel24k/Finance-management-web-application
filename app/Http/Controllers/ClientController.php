@@ -97,4 +97,18 @@ class ClientController extends Controller
             $getCurrentBalance
         ]);
     }
+
+    public function planList (Request $request) {
+        $sortBy = $request->query('sort_by', 'plan_name');
+        $sortOrder = $request->query('sort_order', 'asc');
+
+        $budgetPlan = BudgetPlan::where('user_id', Auth::user()->id)
+        ->orderBy($sortBy, $sortOrder)
+        ->paginate(5);
+        return response()->json($budgetPlan);
+
+
+
+    }
+
 }
