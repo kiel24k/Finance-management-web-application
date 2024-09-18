@@ -10,6 +10,15 @@ const userInfo = ref()
 const userBalanceValue = ref({})
 const planModal = ref(false)
 const planListData = ref({})
+const sortByValue = ref('plan_name')
+const sortOrder = ref('asc')
+const pagination = ref({
+    current_page: '',
+    last_page: '',
+    next_page_url: '',
+    prev_page_url: '',
+    from: '',
+})
 
 
 const userBalance = () => {
@@ -43,21 +52,50 @@ const addPlanBtn = () => {
 const PlanBudgetCloseModal = () => {
     planModal.value = false
     userBalance()
+    planList()
 }
 
-const planList = () => {
+const planList = (page) => {
     axios({
         method: 'GET',
-        url: 'api/plan-list'
+        url: `/api/plan-list?page=${page}`,
+        params: {
+            sort_by: sortByValue.value,
+            sort_order: sortOrder.value,
+        }
     }).then(response => {
-        planListData.value = response.data
+      
 
+        pagination.value = {
+            current_page: response.data.current_page,
+            last_page: response.data.last_page,
+            next_page_url: response.data.next_page_url,
+            prev_page_url: response.data.prev_page_url,
+            from: response.data.from,
+        }
+
+        planListData.value = response.data
     })
 }
 
 const sort = (val) => {
-    alert(val)
-
+    if (sortByValue.value === val) {
+        sortOrder.value = sortOrder.value === 'asc' ? 'desc' : 'asc'
+    } else {
+        sortByValue.value = val
+        sortOrder.value = 'asc'
+    }
+    planList()
+}
+const nextBtn = () => {
+    if(pagination.value.next_page_url){
+        planList(pagination.value.current_page + 1)
+    }
+}
+const prevBtn = () => {
+    if(pagination.value.prev_page_url){
+        planList(pagination.value.current_page - 1)
+    }
 }
 onMounted(() => {
     userBalance()
@@ -140,22 +178,22 @@ onMounted(() => {
                 <tr>
                     <th>#</th>
                     <th @click="sort('plan_name')">Plan Name
-                        <span>{{ sortOrder == 'asc' ? '▲' : '▼' }}</span>
+                        <span>{{ sortOrder === 'asc' ? '▲' : '▼' }}</span>
                     </th>
                     <th @click="sort('category')">Category
-                        <span>{{ sortOrder == 'asc' ? '▲' : '▼' }}</span>
+                        <span>{{ sortOrder === 'asc' ? '▲' : '▼' }}</span>
                     </th>
                     <th @click="sort('amount')">Amount
-                        <span>{{ sortOrder == 'asc' ? '▲' : '▼' }}</span>
+                        <span>{{ sortOrder === 'asc' ? '▲' : '▼' }}</span>
                     </th>
                     <th @click="sort('description')">description
-                        <span>{{ sortOrder == 'asc' ? '▲' : '▼' }}</span>
+                        <span>{{ sortOrder === 'asc' ? '▲' : '▼' }}</span>
                     </th>
-                    <th @click="sort('date')">category
-                        <span>{{ sortOrder == 'asc' ? '▲' : '▼' }}</span>
+                    <th @click="sort('date')">Date
+                        <span>{{ sortOrder === 'asc' ? '▲' : '▼' }}</span>
                     </th>
                     <th @click="sort('target_date')">Target Date
-                        <span>{{ sortOrder == 'asc' ? '▲' : '▼' }}</span>
+                        <span>{{ sortOrder === 'asc' ? '▲' : '▼' }}</span>
                     </th>
                     <th>action</th>
 
@@ -163,13 +201,13 @@ onMounted(() => {
             </thead>
             <tbody>
                 <tr v-for="(data, index) in planListData.data" :key="index">
-                    <td>1</td>
+                    <td>{{ index + 1 }}</td>
                     <td>{{ data.plan_name }}</td>
                     <td>{{ data.category }}</td>
                     <td>{{ data.amount }}</td>
                     <td>{{ data.description }}</td>
-                    <td>{{ data.category }}</td>
-                    <td>sds</td>
+                    <td>{{ data.date }}</td>
+                    <td>{{ data.target_date }}</td>
                     <td class="action">
                         <span>
                             <button>
@@ -185,9 +223,9 @@ onMounted(() => {
         </table>
         <div class="row">
             <div class="col text-center ">
-                <button>prev</button>
-                <span>1 2 3 4 5 6 7 8 9</span>
-                <button>next</button>
+                <button @click="prevBtn">prev</button>
+                <span> {{ pagination.current_page }} of {{ pagination.last_page }} </span>
+                <button @click="nextBtn">next</button>
             </div>
         </div>
     </section>
@@ -195,7 +233,7 @@ onMounted(() => {
 
 <style scoped>
 section {
-    width: 90%;
+    width: 92%;
     margin: auto;
 }
 

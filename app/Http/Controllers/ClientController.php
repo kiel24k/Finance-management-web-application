@@ -104,11 +104,8 @@ class ClientController extends Controller
 
         $budgetPlan = BudgetPlan::where('user_id', Auth::user()->id)
         ->orderBy($sortBy, $sortOrder)
-        ->paginate(5);
+        ->paginate(3);
         return response()->json($budgetPlan);
-
-
-
     }
 
 }
