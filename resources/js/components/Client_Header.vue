@@ -2,11 +2,14 @@
 import Sidebar from '@/components/Client_Sidebar.vue'
 import { onMounted, ref } from 'vue';
 import { useRouter } from 'vue-router';
+import Notification from '@/components/Client_Notification.vue'
 
 const router = useRouter()
 const userInfo = ref()
 const emitUserId = defineEmits(['userID'])
 const showBurger = ref(false)
+const notification = ref(false)
+
 const burger = () => {
     showBurger.value = true
 }
@@ -30,6 +33,14 @@ const profileBtn = () => {
        
 }
 
+const notificationBtn = () => {
+   if(notification.value === false){
+    notification.value = true
+   }else if(notification.value === true){
+    notification.value = false
+   }
+}
+
 onMounted(() => {
     user()
 })
@@ -47,11 +58,12 @@ onMounted(() => {
         <div class="content2">
             <ul class="navbar nav nav-action">
                 <li class="nav-item">
-                    <div class="notification">
+                    <div class="notification" @click="notificationBtn">
                         <img src="/public/image/notification-icon.png" width="20" alt="">
                         notification
                     </div>
                 </li>
+                <Notification v-if="notification"/>
                 <li class="nav-item">
                     <div class="profile" @click="profileBtn">
                         <img src="/public/image/370076_account_avatar_client_male_person_icon.png" width="40" alt="">
@@ -110,7 +122,7 @@ header {
     gap: 10px;
     align-items: center
 }
-.profile, .burger{
+.profile, .burger, .notification{
     cursor: pointer;
 }
 </style>
