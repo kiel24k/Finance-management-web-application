@@ -13,6 +13,7 @@ const category = ref('')
 const categoryValidation = ref('')
 const select = ref('')
 const userCategoryList = ref({})
+const planBudgetValidation = ref({})
 const inputs = ref({
     plan_name: ''
 })
@@ -61,7 +62,16 @@ const saveBtn = () => {
         }
     }).then(response => {
         console.log(response);
-
+        if(response.status == 200){
+            emitCloseModal('closeModal')
+        }
+    }).catch(e => {
+        console.log(e);
+        
+        if(e.response.status == 422){
+            planBudgetValidation.value = e.response.data.errors
+        }
+        
     })
 }
 
@@ -81,7 +91,6 @@ onMounted(() => {
                         aliquam quae, maiores quam autem veritatis! Laboriosam, placeat quam reprehenderit cumque
                         eligendi incidunt repellat nisi magnam atque modi.</small>
                 </div>
-                <h1>{{ inputs.range }}</h1>
                 <div class="col text-end help-action">
                     <button class="help-btn">
                         <img src="/public/image/help-icon.png" width="25" alt="">
@@ -94,11 +103,11 @@ onMounted(() => {
                 </div>
             </div>
             <hr>
-            <div class="row">
+            <div class="row select-row">
                 <small class="text-primary"> {{ categoryValidation }}</small>
                 <div class="col select">
                     <select name="" v-model="select" id="">
-                        <option :value="data.category_name" v-for="(data, index) in userCategoryList" :key=index> {{
+                        <option selected value="select":value="data.category_name"  v-for="(data, index) in userCategoryList" :key=index> {{
                             data.category_name }} </option>
                     </select>
                     <input type="text" class="add-category" placeholder="New Category" v-model="category">
@@ -107,6 +116,7 @@ onMounted(() => {
                         <span>Add Category</span>
                     </button>
                 </div>
+                <small v-if="planBudgetValidation.category">{{ planBudgetValidation.category[0] }}</small>
             </div>
 
             <fieldset>
@@ -115,13 +125,16 @@ onMounted(() => {
                         <div class="col">
                             <label for="">Plan Name</label>
                             <input type="text" placeholder="Standard Aspiring Artist" v-model="inputs.plan_name">
+                            <small v-if="planBudgetValidation.plan_name">{{ planBudgetValidation.plan_name[0] }}</small>
                         </div>
                         <div class="col">
                             <label for="">Amount</label>
                             ₱{{ inputs.range }}
                             <input type="range" v-model="inputs.range" min="0" :max="max"
                                 style="color:red; background:green;">
+                               <small v-if="planBudgetValidation.amount">{{ planBudgetValidation.amount[0] }}</small>
                         </div>
+                        
                     </div>
                     <div class="row mt-2">
                         <div class="col">
@@ -131,12 +144,14 @@ onMounted(() => {
                         <div class="col">
                             <label for="">Target Date</label>
                             <input type="date" v-model="inputs.target_date">
+                            <small v-if="planBudgetValidation.targer_date">{{ planBudgetValidation.target_date[0] }}</small>
                         </div>
                     </div>
                     <div class="row mt-2">
                         <div class="col">
                             <label for="">Description</label>
                             <textarea name="" rows="15" id="" v-model="inputs.description"></textarea>
+                            <small v-if="planBudgetValidation.description">{{ planBudgetValidation.description[0] }}</small>
                         </div>
                     </div>
                 </form>
@@ -226,6 +241,9 @@ onMounted(() => {
     color: blue;
     font-size: 15px;
 }
+.select-row small{
+    color:red;
+}
 
 fieldset {
     box-shadow: 0px 0px 2px 0px gray;
@@ -254,6 +272,10 @@ fieldset input,
 textarea:focus {
     outline: 0;
     color: rgb(83, 82, 82);
+}
+
+fieldset small{
+    color:red;
 }
 
 .help-action button {
