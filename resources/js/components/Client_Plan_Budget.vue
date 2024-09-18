@@ -61,10 +61,13 @@ const saveBtn = () => {
             amount: inputs.value.range
         }
     }).then(response => {
+        console.log(response);
         if(response.status == 200){
             emitCloseModal('closeModal')
         }
     }).catch(e => {
+        console.log(e);
+        
         if(e.response.status == 422){
             planBudgetValidation.value = e.response.data.errors
         }

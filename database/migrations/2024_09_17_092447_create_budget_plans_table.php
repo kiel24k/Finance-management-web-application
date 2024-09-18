@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->bigInteger('user_id');
             $table->string('category');
-            $table->string('amount');
+            $table->decimal('amount',8,2);
             $table->string('date');
             $table->string('description');
             $table->string('plan_name');

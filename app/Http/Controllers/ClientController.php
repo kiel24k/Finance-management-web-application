@@ -69,6 +69,10 @@ class ClientController extends Controller
     public function newPlan(Request $request)
     {
 
+        $getCurrentBalance =  UserBalance::where('user_id', Auth::user()->id)
+        ->select('amount')
+        ->get();
+
         $request->validate([
             'category' => 'required',
             'description' => 'required',
@@ -80,13 +84,17 @@ class ClientController extends Controller
         $budgetPlan->user_id = Auth::user()->id;
         $budgetPlan->date = $request->date;
         $budgetPlan->category = $request->category;
-        $budgetPlan->amount = $request->amount;
         $budgetPlan->description = $request->description;
         $budgetPlan->plan_name = $request->plan_name;
         $budgetPlan->target_date = $request->target_date;
         $budgetPlan->amount = $request->amount;
         $budgetPlan->save();
-
-        return response()->json($budgetPlan);
+        UserBalance::where('user_id', Auth::user()->id)->update([
+            'amount' => $getCurrentBalance[0]->amount - $request->amount
+        ]);
+        
+        return response()->json([
+            $getCurrentBalance
+        ]);
     }
 }

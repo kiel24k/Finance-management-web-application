@@ -16,6 +16,7 @@ const userBalance = () => {
         url: 'api/get-user-balance'
     }).then(response => {
         userBalanceValue.value = response.data[0]
+        
     })
 }
 
@@ -39,6 +40,7 @@ const addPlanBtn = () => {
 
 const PlanBudgetCloseModal = () => {
     planModal.value = false
+    userBalance()
 
 
 }
