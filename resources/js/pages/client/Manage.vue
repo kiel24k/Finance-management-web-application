@@ -251,14 +251,14 @@ onMounted(() => {
                 </tr>
             </tbody>
         </table>
-        <div class="row">
-            <div class="col text-center ">
-                <button @click="prevBtn">prev</button>
-                <span> {{ pagination.current_page }} of {{ pagination.last_page }} </span>
-                <button @click="nextBtn">next</button>
-            </div>
-        </div>
     </section>
+    <div class="row text-center">
+        <div class="col text-center nextprevbtn">
+            <button @click="prevBtn"><img src="/public/image/prev-icon.png" width="20" alt=""></button>
+            <span> {{ pagination.current_page }} of {{ pagination.last_page }} </span>
+            <button @click="nextBtn"><img src="/public/image/next-icon.png" width="24" alt=""></button>
+        </div>
+    </div>
 </template>
 
 <style scoped>
@@ -306,6 +306,11 @@ section {
     background-color: transparent;
     border: 0;
 }
+.nextprevbtn button{
+    background: none;
+    border:0;
+}
+
 
 
 @media screen and (min-width: 769px) {
@@ -336,7 +341,11 @@ section {
     .action button {
         background: transparent;
         border: 0;
-
+        cursor:pointer;
+    }
+    .nextprevbtn button{
+        background: none;
+        border:0;
     }
 
 }
@@ -370,6 +379,10 @@ section {
         background: transparent;
         border: 0;
 
+    }
+    .nextprevbtn button{
+        background: none;
+        border:0;
     }
 }
 
