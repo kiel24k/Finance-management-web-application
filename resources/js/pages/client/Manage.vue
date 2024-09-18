@@ -240,12 +240,14 @@ onMounted(() => {
                     <td>{{ data.target_date }}</td>
                     <td class="action">
                         <span>
+                            <button><img src="/public/image/view-eye.png" width="25" alt=""></button>
                             <button>
                                 <img src="/public/image/update-pencil-icon.svg" width="20px" alt="">
                             </button>
                             <button @click="deletePlanBtn(data.id)">
                                 <img src="/public/image/delete-icon.png" width="20px" alt="">
                             </button>
+
                         </span>
                     </td>
                 </tr>
