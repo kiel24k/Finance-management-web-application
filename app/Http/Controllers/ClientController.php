@@ -69,13 +69,13 @@ class ClientController extends Controller
     public function newPlan(Request $request)
     {
 
-        // $request->validate([
-        //     'category' => 'required',
-        //     'description' => 'required',
-        //     'plan_name' => 'required',
-        //     'target_date' => 'required',
-        //     'amount' => 'required'
-        // ]);
+        $request->validate([
+            'category' => 'required',
+            'description' => 'required',
+            'plan_name' => 'required',
+            'target_date' => 'required',
+            'amount' => 'required'
+        ]);
         $budgetPlan = new BudgetPlan();
         $budgetPlan->user_id = Auth::user()->id;
         $budgetPlan->date = $request->date;
