@@ -108,4 +108,10 @@ class ClientController extends Controller
         return response()->json($budgetPlan);
     }
 
+    public function deletePlan (Request $request) {
+        $budgetPlan = BudgetPLan::find($request->id)->delete();
+        return response()->json($budgetPlan);
+
+    }
+
 }

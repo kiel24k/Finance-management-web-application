@@ -1,9 +1,10 @@
 <script setup>
 import Header from '@/components/Client_Header.vue'
 import AddBalanceModal from '@/components/Client_Add_Balance.vue'
-import { onMounted, ref } from 'vue';
+import { onMounted, ref, watch } from 'vue';
 import PlanBudget from '@/components/Client_Plan_Budget.vue'
 import axios from 'axios';
+import html2pdf from 'html2pdf.js';
 
 const balanceModal = ref(false)
 const userInfo = ref()
@@ -12,6 +13,7 @@ const planModal = ref(false)
 const planListData = ref({})
 const sortByValue = ref('plan_name')
 const sortOrder = ref('asc')
+const tableDataExport = ref(null)
 const pagination = ref({
     current_page: '',
     last_page: '',
@@ -64,8 +66,6 @@ const planList = (page) => {
             sort_order: sortOrder.value,
         }
     }).then(response => {
-      
-
         pagination.value = {
             current_page: response.data.current_page,
             last_page: response.data.last_page,
@@ -73,7 +73,6 @@ const planList = (page) => {
             prev_page_url: response.data.prev_page_url,
             from: response.data.from,
         }
-
         planListData.value = response.data
     })
 }
@@ -87,19 +86,50 @@ const sort = (val) => {
     }
     planList()
 }
+
+
 const nextBtn = () => {
-    if(pagination.value.next_page_url){
+    if (pagination.value.next_page_url) {
         planList(pagination.value.current_page + 1)
     }
+
+
 }
 const prevBtn = () => {
-    if(pagination.value.prev_page_url){
+    if (pagination.value.prev_page_url) {
         planList(pagination.value.current_page - 1)
     }
+
+}
+
+const exportPdf = () => {
+    const element = tableDataExport.value;
+    const options = {
+        margin: 1,
+        filename: 'plan-table.pdf',
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { scale: 2 },
+        jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+    };
+    html2pdf().from(element).set(options).save();
+}
+
+const deletePlanBtn = (id) => {
+    axios({
+        url: 'api/delete-plan',
+        method: 'POST',
+        data: {
+            id: id
+        }
+    }).then(response => {
+        console.log(response);
+        planList()
+    })
 }
 onMounted(() => {
     userBalance()
     planList()
+
 })
 
 </script>
@@ -164,7 +194,7 @@ onMounted(() => {
                         </span>
                     </button>
                     |
-                    <button class="btn btn-info text-white export">
+                    <button class="btn btn-info text-white export" @click="exportPdf">
                         <img src="/public/image/download-icon.png" width="20px" alt="">
                         Export
                     </button>
@@ -173,7 +203,7 @@ onMounted(() => {
         </div>
     </section>
     <section id="section-four" class="mt-2">
-        <table class="table table-hover ">
+        <table class="table table-hover" ref="tableDataExport">
             <thead>
                 <tr>
                     <th>#</th>
@@ -213,7 +243,7 @@ onMounted(() => {
                             <button>
                                 <img src="/public/image/update-pencil-icon.svg" width="20px" alt="">
                             </button>
-                            <button>
+                            <button @click="deletePlanBtn(data.id)">
                                 <img src="/public/image/delete-icon.png" width="20px" alt="">
                             </button>
                         </span>
