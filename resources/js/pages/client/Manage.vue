@@ -231,10 +231,10 @@ onMounted(() => {
             </thead>
             <tbody>
                 <tr v-for="(data, index) in planListData.data" :key="index">
-                    <td>{{ index + 1 }}</td>
+                    <td>{{ index +  }}</td>
                     <td>{{ data.plan_name }}</td>
                     <td>{{ data.category }}</td>
-                    <td>{{ data.amount }}</td>
+                    <td class="text-success">{{ data.amount }}</td>
                     <td>{{ data.description }}</td>
                     <td>{{ data.date }}</td>
                     <td>{{ data.target_date }}</td>
