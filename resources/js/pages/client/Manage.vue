@@ -274,6 +274,9 @@ section {
     align-items: center;
     height: 5rem;
 }
+.balance h1{
+    font-weight: 600;
+}
 
 #section-one {
     background-color: rgb(255, 255, 255);
