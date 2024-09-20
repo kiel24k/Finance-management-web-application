@@ -59,6 +59,7 @@ class AuthController extends Controller
     public function logout(Request $request)
     {
         Auth::logout();
+        Cookie::queue(Cookie::forget('user_token'));
         $request->session()->invalidate();
         $request->session()->regenerateToken();
     }

@@ -40,7 +40,7 @@ const routes = [
 const router = createRouter({
     history: createWebHistory(),
     routes,
-});
+})
 
 // router.beforeEach((to, from) => {
 //     const token = localStorage.getItem('userT')

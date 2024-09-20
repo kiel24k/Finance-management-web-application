@@ -23,13 +23,13 @@ const submit = () => {
     }
   }).then(response => {
     if(response.status == 200){
+      document.cookie = "name=oeschger; SameSite=None; Secure";
       router.push('/client-dashboard')
     }
   }).catch(e => {
     if(e.status == 422){
       inputValidation.value = e.response.data.errors
     }
-
   })
 }
 
