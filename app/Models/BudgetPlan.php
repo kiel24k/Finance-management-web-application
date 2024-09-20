@@ -18,5 +18,6 @@ class BudgetPlan extends Model
         'plan_name',
         'target_date',
         'amount',
+        'current_amount'
     ];
 }
