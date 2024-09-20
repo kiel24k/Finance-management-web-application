@@ -18,8 +18,6 @@ const inputs = ref({
 })
 
 
-
-
 const closeModal = () => {
     emitCloseModal('closeModal')
 }

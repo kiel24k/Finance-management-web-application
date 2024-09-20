@@ -7,8 +7,6 @@ const burgerProps = defineProps(['showBurger'])
 const hideBurgerEmit = defineEmits(['hideBurger'])
 const isBurger = ref(false)
 
-
-
 watch(burgerProps, (oldVal, newVal) => {
   if (burgerProps.showBurger == true) {
     isBurger.value = true
@@ -16,7 +14,6 @@ watch(burgerProps, (oldVal, newVal) => {
     isBurger.value = false
   }
 })
-
 
 const hideBurger = () => {
   hideBurgerEmit('hideBurger')

@@ -42,4 +42,8 @@ const router = createRouter({
     routes,
 });
 
+// router.beforeEach((to, from) => {
+//     const token = localStorage.getItem('userT')
+// })
+
 export default router;
