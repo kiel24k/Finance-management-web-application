@@ -1,6 +1,8 @@
 <script setup>
 import { onMounted, ref, watch } from 'vue';
+import { useRouter } from 'vue-router';
 
+const router = useRouter()
 const burgerProps = defineProps(['showBurger'])
 const hideBurgerEmit = defineEmits(['hideBurger'])
 const isBurger = ref(false)
@@ -13,13 +15,22 @@ watch(burgerProps, (oldVal, newVal) => {
   } else if (burgerProps.showBurger == false) {
     isBurger.value = false
   }
-  
- 
 })
 
 
 const hideBurger = () => {
   hideBurgerEmit('hideBurger')
+}
+
+const logoutBtn = () => {
+  axios({
+    url: 'api/logout',
+    method: 'GET'
+  }).then(response => {
+    if(response.status === 200){
+      router.push('/login')
+    }
+  })
 }
 
 
@@ -52,54 +63,12 @@ const hideBurger = () => {
               Manage
             </li>
           </router-link>
-          <div class="item1">
+          <a class="item1" @click="logoutBtn">
             <li class="nav-link text-dark">
-              <img src="/public/image/dot.png" width="20px" alt="" />
-              Item 1 sample
+              <img src="/public/image/logout.png" width="22" alt="">
+              Logout
             </li>
-          </div>
-          <div class="item1">
-            <li class="nav-link text-dark">
-              <img src="/public/image/dot.png" width="20px" alt="" />
-              Item 1 sample
-            </li>
-          </div>
-          <div class="item1">
-            <li class="nav-link text-dark">
-              <img src="/public/image/dot.png" width="20px" alt="" />
-              Item 1 sample
-            </li>
-          </div>
-          <div class="item1">
-            <li class="nav-link text-dark">
-              <img src="/public/image/dot.png" width="20px" alt="" />
-              Item 1 sample
-            </li>
-          </div>
-          <div class="item1">
-            <li class="nav-link text-dark">
-              <img src="/public/image/dot.png" width="20px" alt="" />
-              Item 1 sample
-            </li>
-          </div>
-          <div class="item1">
-            <li class="nav-link text-dark">
-              <img src="/public/image/dot.png" width="20px" alt="" />
-              Item 1 sample
-            </li>
-          </div>
-          <div class="item1">
-            <li class="nav-link text-dark">
-              <img src="/public/image/dot.png" width="20px" alt="" />
-              Item 1 sample
-            </li>
-          </div>
-          <div class="item1">
-            <li class="nav-link text-dark">
-              <img src="/public/image/dot.png" width="20px" alt="" />
-              Item 1 sample
-            </li>
-          </div>
+          </a>
         </ul>
       </div>
     </div>
