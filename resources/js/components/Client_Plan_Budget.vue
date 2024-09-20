@@ -7,8 +7,7 @@ import { onMounted, ref } from 'vue';
 const currentDate = new Date().toLocaleDateString()
 const emitCloseModal = defineEmits(['closeModal'])
 const propsUserBalanceValue = defineProps(['userBalanceValue'])
-const rangeValue = ref()
-const max = propsUserBalanceValue.userBalanceValue.amount
+const max = propsUserBalanceValue.userBalanceValue.userChangeBalance.amount
 const category = ref('')
 const categoryValidation = ref('')
 const select = ref('')
@@ -17,6 +16,9 @@ const planBudgetValidation = ref({})
 const inputs = ref({
     plan_name: ''
 })
+
+
+
 
 const closeModal = () => {
     emitCloseModal('closeModal')
@@ -58,7 +60,8 @@ const saveBtn = () => {
             description: inputs.value.description,
             plan_name: inputs.value.plan_name,
             target_date: inputs.value.target_date,
-            amount: inputs.value.range
+            amount: inputs.value.range,
+            current_amount:50
         }
     }).then(response => {
         console.log(response);
@@ -77,6 +80,10 @@ const saveBtn = () => {
 
 onMounted(() => {
     userCategory()
+    console.log(propsUserBalanceValue.userBalanceValue.userFixedBalance);
+    console.log(propsUserBalanceValue.userBalanceValue.userChangeBalance);
+    
+    
 })
 
 </script>

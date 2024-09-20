@@ -8,7 +8,10 @@ import html2pdf from 'html2pdf.js';
 
 const balanceModal = ref(false)
 const userInfo = ref()
-const userBalanceValue = ref({})
+const userBalanceValue = ref({
+    userChangeBalance: null,
+    userFixedBalance: null
+})
 const planModal = ref(false)
 const planListData = ref({})
 const sortByValue = ref('plan_name')
@@ -28,8 +31,10 @@ const userBalance = () => {
         method: 'GET',
         url: 'api/get-user-balance'
     }).then(response => {
-        userBalanceValue.value = response.data[0]
-
+        userBalanceValue.value = ({
+            userChangeBalance: response.data[0],
+            userFixedBalance: response.data[0].amount
+        })
     })
 }
 
@@ -129,6 +134,8 @@ const deletePlanBtn = (id) => {
 onMounted(() => {
     userBalance()
     planList()
+   
+   
 
 })
 
@@ -141,7 +148,7 @@ onMounted(() => {
         <div class="row balance">
             <div class="col text-success">
                 <span>your balance is:</span>
-                <h1 v-if="userBalanceValue">₱{{ userBalanceValue.amount }}</h1>
+                <h1 v-if="userBalanceValue.userChangeBalance">₱{{ userBalanceValue.userChangeBalance.amount }}</h1>
             </div>
             <div class="col text-end">
                 <button @click="addBalanceBtn">
@@ -213,14 +220,11 @@ onMounted(() => {
                     <th @click="sort('category')">Category
                         <span>{{ sortOrder === 'asc' ? '▲' : '▼' }}</span>
                     </th>
-                    <th>
-                        <span>Current Balance</span>
+                    <th @click="sort('current_amount')"> Current Amount
+                        <span>{{ sortOrder === 'asc' ? '▲' : '▼' }}</span>
                     </th>
                     <th @click="sort('amount')">Amount
                         <span>{{ sortOrder === 'asc' ? '▲' : '▼' }}</span>
-                    </th>
-                    <th>
-                        <span>Amount Save</span>
                     </th>
                     <th @click="sort('description')">description
                         <span>{{ sortOrder === 'asc' ? '▲' : '▼' }}</span>
@@ -240,7 +244,7 @@ onMounted(() => {
                     <td>{{ index + 1 }}</td>
                     <td>{{ data.plan_name }}</td>
                     <td>{{ data.category }}</td>
-                    <td>Balance</td>
+                    <td>{{ data.current_amount }}</td>
                     <td class="amount-row">
                         <span>₱{{ data.amount }}</span>
                     </td>
@@ -283,7 +287,8 @@ section {
     align-items: center;
     height: 5rem;
 }
-.balance h1{
+
+.balance h1 {
     font-weight: 600;
 }
 
@@ -320,15 +325,17 @@ section {
     background-color: transparent;
     border: 0;
 }
-.nextprevbtn button{
+
+.nextprevbtn button {
     background: none;
-    border:0;
+    border: 0;
 }
-.amount-row span{
+
+.amount-row span {
     background-color: rgb(148, 202, 148);
-    padding:5px;
+    padding: 5px;
     border-radius: 15px;
-    color:rgb(245, 244, 244);
+    color: rgb(245, 244, 244);
     font-weight: 600;
     box-shadow: 0px 0px 2px 0px rgb(175, 175, 175);
 }
@@ -363,11 +370,12 @@ section {
     .action button {
         background: transparent;
         border: 0;
-        cursor:pointer;
+        cursor: pointer;
     }
-    .nextprevbtn button{
+
+    .nextprevbtn button {
         background: none;
-        border:0;
+        border: 0;
     }
 
 }
@@ -402,9 +410,10 @@ section {
         border: 0;
 
     }
-    .nextprevbtn button{
+
+    .nextprevbtn button {
         background: none;
-        border:0;
+        border: 0;
     }
 }
 

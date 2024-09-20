@@ -88,6 +88,7 @@ class ClientController extends Controller
         $budgetPlan->plan_name = $request->plan_name;
         $budgetPlan->target_date = $request->target_date;
         $budgetPlan->amount = $request->amount;
+        $budgetPlan->current_amount = $getCurrentBalance[0]->amount;
         $budgetPlan->save();
         UserBalance::where('user_id', Auth::user()->id)->update([
             'amount' => $getCurrentBalance[0]->amount - $request->amount

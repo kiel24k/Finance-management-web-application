@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('description');
             $table->string('plan_name');
             $table->string('target_date');
+            $table->integer('current_amount');
             $table->timestamps();
         });
     }
