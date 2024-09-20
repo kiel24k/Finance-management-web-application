@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cookie;
 
 class AuthController extends Controller
 {
@@ -46,12 +47,19 @@ class AuthController extends Controller
             $token = $user->createToken('TokenName')->plainTextToken;
             return response()->json([
                 'message' => 'login successfull'
-            ])->cookie('user_token',$token, 24 * 6 * 7, null, null, true, true);
+            ])->cookie('user_token', $token, 24 * 6 * 7, null, null, true, true);
         }
     }
 
-    public function user () {
+    public function user()
+    {
         $user = Auth::user();
         return response()->json($user);
+    }
+    public function logout(Request $request)
+    {
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
     }
 }

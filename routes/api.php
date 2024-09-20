@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 route::controller(AuthController::class)->group(function () {
     route::post('signup', 'signup');
     route::post('login', 'login');
+    route::get('/logout', 'logout');
     route::get('/user', 'user');
 });
 
