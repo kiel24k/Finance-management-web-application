@@ -234,7 +234,9 @@ onMounted(() => {
                     <td>{{ index + 1 }}</td>
                     <td>{{ data.plan_name }}</td>
                     <td>{{ data.category }}</td>
-                    <td>{{ data.amount }}</td>
+                    <td class="amount-row">
+                        <span>₱{{ data.amount }}</span>
+                    </td>
                     <td>{{ data.description }}</td>
                     <td>{{ data.date }}</td>
                     <td>{{ data.target_date }}</td>
@@ -314,6 +316,14 @@ section {
 .nextprevbtn button{
     background: none;
     border:0;
+}
+.amount-row span{
+    background-color: rgb(148, 202, 148);
+    padding:5px;
+    border-radius: 15px;
+    color:rgb(245, 244, 244);
+    font-weight: 600;
+    box-shadow: 0px 0px 2px 0px rgb(175, 175, 175);
 }
 
 
