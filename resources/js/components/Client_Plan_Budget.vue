@@ -124,7 +124,7 @@ onMounted(() => {
                     <div class="row">
                         <div class="col">
                             <label for="">Plan Name</label>
-                            <input type="text" placeholder="Standard Aspiring Artist" v-model="inputs.plan_name">
+                            <input type="text" placeholder="Your Plan Name" v-model="inputs.plan_name">
                             <small v-if="planBudgetValidation.plan_name">{{ planBudgetValidation.plan_name[0] }}</small>
                         </div>
                         <div class="col">

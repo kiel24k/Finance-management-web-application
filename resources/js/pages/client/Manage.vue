@@ -213,8 +213,14 @@ onMounted(() => {
                     <th @click="sort('category')">Category
                         <span>{{ sortOrder === 'asc' ? '▲' : '▼' }}</span>
                     </th>
+                    <th>
+                        <span>Current Balance</span>
+                    </th>
                     <th @click="sort('amount')">Amount
                         <span>{{ sortOrder === 'asc' ? '▲' : '▼' }}</span>
+                    </th>
+                    <th>
+                        <span>Amount Save</span>
                     </th>
                     <th @click="sort('description')">description
                         <span>{{ sortOrder === 'asc' ? '▲' : '▼' }}</span>
@@ -222,9 +228,9 @@ onMounted(() => {
                     <th @click="sort('date')">Date
                         <span>{{ sortOrder === 'asc' ? '▲' : '▼' }}</span>
                     </th>
-                    <th @click="sort('target_date')">Target Date
+                    <!-- <th @click="sort('target_date')">Target Date
                         <span>{{ sortOrder === 'asc' ? '▲' : '▼' }}</span>
-                    </th>
+                    </th> -->
                     <th>action</th>
 
                 </tr>
@@ -234,12 +240,13 @@ onMounted(() => {
                     <td>{{ index + 1 }}</td>
                     <td>{{ data.plan_name }}</td>
                     <td>{{ data.category }}</td>
+                    <td>Balance</td>
                     <td class="amount-row">
                         <span>₱{{ data.amount }}</span>
                     </td>
                     <td>{{ data.description }}</td>
                     <td>{{ data.date }}</td>
-                    <td>{{ data.target_date }}</td>
+                    <!-- <td>{{ data.target_date }}</td> -->
                     <td class="action">
                         <span>
                             <button><img src="/public/image/view-eye.png" width="25" alt=""></button>
