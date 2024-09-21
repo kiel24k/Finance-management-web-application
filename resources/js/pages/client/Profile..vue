@@ -2,11 +2,13 @@
 import Header from '@/components/Client_Header.vue'
 import axios from 'axios';
 import { computed, onMounted, ref } from 'vue';
+import ProfileNameModal from '@/components/Client_Profile_Name.vue'
 
 const userData = ref({})
 const result = computed(() => {
     return Object.values(userData.value).some(userData => userData === null)
 })
+const profileNameModal = ref(false)
 
 const userProfile = () => {
     axios({
@@ -17,6 +19,13 @@ const userProfile = () => {
     })
 }
 
+const nameContent = () => {
+    profileNameModal.value = true
+}
+const closeModal = () => {
+    profileNameModal.value = false
+}
+
 
 
 onMounted(() => {
@@ -25,6 +34,7 @@ onMounted(() => {
 </script>
 
 <template>
+    <ProfileNameModal v-if="profileNameModal" @closeModal="closeModal"/>
     <Header />
     <section class="row" id="profile">
         <div class="col">
@@ -49,11 +59,11 @@ onMounted(() => {
                 <img src="/public/image/alert-icon.png" width="20" alt=""> <span title="dsdsd">Complete your details
                     here!</span>
             </div>
-            <h2>Info</h2>
-            <div class="content">
+            <h2>Profile</h2>
+            <div class="content" @click="nameContent">
                 <figure class="figure-info">
                     <figcaption class="figure-figcaption">
-                        Profile
+                        Name
                     </figcaption>
                     <img src="/public/image/next-icon.png" width="25" alt="">
                 </figure>
@@ -61,7 +71,7 @@ onMounted(() => {
             <div class="content">
                 <figure class="figure-info">
                     <figcaption class="figure-figcaption">
-                        Contact
+                        Username
                     </figcaption>
                     <img src="/public/image/next-icon.png" width="25" alt="">
                 </figure>
