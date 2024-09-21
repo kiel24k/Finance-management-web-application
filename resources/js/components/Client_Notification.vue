@@ -95,6 +95,8 @@ const test = () => {
             border-radius: 10px;
             margin-top:4rem;
             margin-right: 1rem;
+            z-index: 999;
+           
         }
 
         .notif-section {
