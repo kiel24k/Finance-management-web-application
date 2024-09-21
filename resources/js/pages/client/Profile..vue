@@ -5,16 +5,15 @@ import { computed, onMounted, ref } from 'vue';
 
 const userData = ref({})
 const result = computed(() => {
-            return Object.values(userData.value).some(userData => userData === null)
-        })
+    return Object.values(userData.value).some(userData => userData === null)
+})
+
 const userProfile = () => {
     axios({
         method: 'GET',
         url: 'api/user'
     }).then(response => {
         userData.value = response.data
-        // console.log(userData.value.last_name);
-        // console.log(result.value);
     })
 }
 
@@ -32,10 +31,9 @@ onMounted(() => {
             <figure>
                 <img src="/public/image/370076_account_avatar_client_male_person_icon.png" alt="">
                 <figcaption class="profile-figcaption text-dark">
-                    <span>KIEL ALARCON BERMUDEZ</span>
+                    <span>{{ userData.username }}</span>
                 </figcaption>
             </figure>
-
         </div>
         <div class="col profile-action">
             <div class="">
@@ -48,42 +46,39 @@ onMounted(() => {
     <section id="info">
         <article>
             <div class="fill-info-warning alert alert-danger" v-if="result === true">
-               <img src="/public/image/alert-icon.png" width="20" alt=""> <span>Complete your details here!</span>
+                <img src="/public/image/alert-icon.png" width="20" alt=""> <span title="dsdsd">Complete your details
+                    here!</span>
             </div>
             <h2>Info</h2>
             <div class="content">
                 <figure class="figure-info">
-                    <img src="/public/image/5296499_fb_facebook_facebook logo_icon.png" width="50" alt="">
                     <figcaption class="figure-figcaption">
-                        keilbermudez@gmail.com
+                        Profile
                     </figcaption>
+                    <img src="/public/image/next-icon.png" width="25" alt="">
                 </figure>
             </div>
             <div class="content">
                 <figure class="figure-info">
-                    <img src="/public/image/5296499_fb_facebook_facebook logo_icon.png" width="50" alt="">
                     <figcaption class="figure-figcaption">
-                        keilbermudez@gmail.com
+                        Contact
                     </figcaption>
+                    <img src="/public/image/next-icon.png" width="25" alt="">
                 </figure>
             </div>
             <div class="content">
                 <figure class="figure-info">
-                    <img src="/public/image/5296499_fb_facebook_facebook logo_icon.png" width="50" alt="">
                     <figcaption class="figure-figcaption">
-                        keilbermudez@gmail.com
+                        Links
                     </figcaption>
+                    <img src="/public/image/next-icon.png" width="25" alt="">
                 </figure>
             </div>
-            <div class="content">
-                <figure class="figure-info">
-                    <img src="/public/image/5296499_fb_facebook_facebook logo_icon.png" width="50" alt="">
-                    <figcaption class="figure-figcaption">
-                        keilbermudez@gmail.com
-                    </figcaption>
-                </figure>
-            </div>
+            <div class="change-password text-end">
+                <button class="btn btn-danger">Change password</button>
+            </div>  
         </article>
+        
     </section>
 </template>
 
@@ -122,15 +117,24 @@ figure {
 
 .figure-info {
     display: flex;
+    justify-content: space-between;
+    padding:10px;
+    border-radius: 10px;
+    transition: all linear 0.1s;
+}
+.figure-info:hover{
+    background: #dfdfdf;
+    cursor:pointer;
 }
 
 .figure-figcaption {
     font-weight: 600;
 }
-.fill-info-warning{
+
+.fill-info-warning {
     display: flex;
     align-items: center;
-    gap:10px;
+    gap: 10px;
     z-index: -1;
 }
 </style>
